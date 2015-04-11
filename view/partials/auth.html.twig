@@ -10,9 +10,12 @@
 	{{ parent() }}
     <div class="clearfix"></div>
     <div class="row" >
-    	<h1>Auth</h1>
+    	<h2>dlt.tw</h2>
+    	<h4>(delete tweet)</h4>
+    	<p>Easily search and bulk delete old shitty tweets.<br />To start, login using your twitter account:</p>
     	<br />
-    	<a href="/social/oauth/google" class="btn btn-primary">Login with Google+</a>
+    	<a href="/social/oauth/twitter"><img src="img/login_with_twitter.png" class="swap" id="login-button-twitter" align="middle" /></a>
+    	<img src="img/login_with_twitter.swap.png" class="load-hide" id="login-button-twitter-swap" />
     </div>
 {% endblock %}
 

@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{parent()}} / tweets{% endblock %}
+
+ {% block opengraph_meta %}
+  		{{parent()}}
+  {% endblock %} 
+
+{% block body %}
+	{{ parent() }}
+	
+
+	<script src="js/app.js"></script>
+
+    <div class="clearfix"></div>
+
+	<div class="row" >
+
+		<div class="form-group ">
+			<a class="btn btn-success" id="new" href="/write/new">New</a>
+			<a class="btn btn-primary" id="save">Save</a>
+			<small id="date_updated" >{{date_updated}}</small>
+		</div>
+
+		<form role="form" >
+			<div class="form-group ">
+				<textarea class="form-control noselect" name="current_document" id="current_document" rows="4" cols="150">{{current_document}}</textarea>
+			</div>					
+
+		</form>
+	</div>
+{% endblock %}
+
