@@ -1,3 +1,32 @@
 $(document).ready(function() {
-	console.log(JSON.parse($("#twitter-user").html()));
+	
+	var user = JSON.parse($("#twitter-user").html());
+	
+    var TwitterUserProfileView = Backbone.View.extend({
+        el: $("#twitter-user-profile"),
+        initialize: function(){
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function(){
+            var template = _.template( $("#twitter-user-profile-template").html());
+            this.$el.html( template(user) );
+        }
+    });
+	var userNavView = new TwitterUserProfileView();
+
+    var SearchFormView = Backbone.View.extend({
+        el: $("#search-form"),
+        initialize: function(){
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function(){
+            var template = _.template( $("#search-form-template").html());
+            this.$el.html( template(user) );
+        }
+    });
+    var searchForm = new SearchFormView();
+
 });
+
