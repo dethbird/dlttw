@@ -1,0 +1,78 @@
+.site-thumbnail img {
+	margin-top:5px;
+	-webkit-box-shadow: 2px 2px 10px rgba(50, 50, 50, 0.57);
+	-moz-box-shadow:    2px 2px 10px rgba(50, 50, 50, 0.57);
+	box-shadow:         2px 2px 10px rgba(50, 50, 50, 0.57);
+}
+.left {
+	text-align: left;
+}
+.right {
+	text-align: right;
+}
+
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+textarea#current_document {
+    border: 1px solid #EEEEEE;
+    box-shadow: 1px 1px 0 #DDDDDD;
+    display: block;
+    font-family: 'Indie Flower',cursive;
+    font-size: 22px;
+    line-height: 50px;
+    margin: 2% auto;
+    padding: 11px 0px 0 90px;
+    resize: none;
+    height: 80%;
+    width: 100%;
+
+    background-image: -moz-linear-gradient(top , transparent, transparent 49px,#E7EFF8 0px), -moz-radial-gradient(4% 50%, circle closest-corner, #f5f5f5, #f5f5f5 39%, transparent 0%), -moz-radial-gradient(3.9% 46% , circle closest-corner, #CCCCCC, #CCCCCC 43.5%, transparent 0%); 
+    background-image: -webkit-linear-gradient(top , transparent, transparent 49px,#E7EFF8 0), -webkit-radial-gradient(4% 50%, circle closest-corner, #f5f5f5, #f5f5f5 39%, transparent 0%), -webkit-radial-gradient(3.9% 46%, circle closest-corner, #cccccc, #cccccc 43.5%, transparent 0%);
+
+    -webkit-background-size:  100% 50px;
+    background-size: 100% 50px;
+}
+
+/** SOCIAL ICONS */
+.social-icon {
+	margin-right:10px;
+}
+.social-icon.flickr {
+	background-image:url('http://images.rishisatsangi.com/social-media-icons/flickr-32-32.png');
+}
+.social-icon.instagram {
+	background-image:url('http://images.rishisatsangi.com/social-media-icons/instagram-32-32.png');
+}
+.social-icon.photo {
+	background-image:url('http://images.rishisatsangi.com/social-media-icons/photo-32-32.png');
+}
+.social-icon.twitter {
+	background-image:url('http://images.rishisatsangi.com/social-media-icons/twitter-32-32.png');
+}
+.social-icon.github {
+	background-image:url('http://images.rishisatsangi.com/social-media-icons/github-32-32.png');
+}
+.social-icon.email {
+	background-image:url('http://images.rishisatsangi.com/social-media-icons/email-32-32.png');
+}
+.social-icon.deviantart {
+	background-image:url('http://images.rishisatsangi.com/social-media-icons/deviantart-32-32.png');
+}
+.social-icon.tumblr {
+	background-image:url('http://images.rishisatsangi.com/social-media-icons/tumblr-32-32.png');
+}
+.social-icon.comment {
+	background-image:url('http://images.rishisatsangi.com/social-media-icons/comment-32-32.png');
+}
+.social-icon.foursquare {
+	background-image:url('http://images.rishisatsangi.com/social-media-icons/foursquare-32-32.png');
+}
+
+

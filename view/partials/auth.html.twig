@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{parent()}} / activity type / list{% endblock %}
+
+ {% block opengraph_meta %}
+  		{{parent()}}
+  {% endblock %} 
+
+{% block body %}
+	{{ parent() }}
+    <div class="clearfix"></div>
+    <div class="row" >
+    	<h1>Auth</h1>
+    	<br />
+    	<a href="/social/oauth/google" class="btn btn-primary">Login with Google+</a>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,118 @@
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title ng-bind="title">{% block title %}trkr{% endblock %}</title>
+  
+  {% block opengraph_meta %}
+    <meta property="og:site_name" content="RishiSatsangi.com - artwerks by Rishi Satsangi">
+    <meta property="og:type" content="website">
+  {% endblock %} 
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- jquery -->
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//assets.artistcontrolbox.com/js/autolink-min.js"></script>
+
+
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="/js/lib/moment.min.js"></script>
+
+	
+  <link rel="stylesheet" href="/css/site.css">
+
+  <!-- google font -->
+<!--   <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'> -->
+<link href="http://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" type="text/css">  
+
+  {% block headscript %}{% endblock %}
+</head>
+<body>
+
+<nav class="navbar navbar-inverse" role="navigation" ng-controller="NavController">
+  <!-- Brand and toggle get grouped for better mobile data-dismissplay -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gallery-navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="/">trkr</a> -->
+  </div>
+
+
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  {%if user!=""%}
+  <div class="collapse navbar-collapse" id="gallery-navbar-collapse">
+    <ul class="nav navbar-nav">
+
+        <!--<li class="{%if section=="/write" %}active{%endif%} dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-star"></span> Write<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/write/new"><span class="glyphicon glyphicon-time"></span> New</a></li>
+          </ul>
+
+        </li>-->
+        
+        <li class="{%if section=="/account" %}active{%endif%} dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{user.email}}<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!--<li><a href="/account"><span class="glyphicon glyphicon-link"></span> My Acount</a></li>-->
+            <li><a href="/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+          </ul>
+
+        </li>
+
+    </ul>
+  </div><!-- /.navbar-collapse -->
+  {%endif%}
+</nav>
+
+<div class="container">
+  
+  {% if flash.error != "" %}
+  <div class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Error!</strong> {{flash.error}}
+  </div>
+  {% endif %}
+
+  {% if flash.success != "" %}
+  <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Success!</strong> {{flash.success}}
+  </div>
+  {% endif %}
+	
+  {% block body %}{% endblock %}
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h2 class="modal-title" id="myModalLabel">Modal title</h2>
+      </div>
+      <div class="modal-body" id="myModalContent">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<!-- <center>&copy; 2014 RishiSatsangi.com</center> -->
+</div>
+
+</body>
+</html>
