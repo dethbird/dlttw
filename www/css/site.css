@@ -21,7 +21,7 @@ blockquote.twitter-tweet {
   color: #000;
 }
 blockquote.twitter-tweet:hover, blockquote.twitter-tweet.selected {
-    background-color: #f5fcff;
+    background-color: #ffd7da;
     cursor: pointer;
 }
  

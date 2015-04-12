@@ -30,18 +30,20 @@
 
 	<div class="row" >
 		<form class="form-inline" id="filter-form">
-		 	<div class="form-group">
-		    	<label for="q">Filter</label>
-		    	<input type="text" class="form-control" id="q" placeholder="e.g. apples">
+			<div class="form-group">
+		    	<label for="until">All:</label>
+		    	<input type="checkbox" class="form-control" id="all" />
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="until">Max ID</label>
-		    	<input type="text" class="form-control" id="max_id" placeholder="tweet id">
+		    	<input type="text" class="form-control" id="max_id" placeholder="tweet id" data-toggle="tooltip" data-placement="bottom" title="Return 200 tweets with this tweet id as the newest">
 		  	</div>
-		  	<a id="filter" class="btn btn-default">Retrieve</a>
+		  	<a id="fetch" class="btn btn-default">Retrieve</a>
+		  	<a id="delete" class="btn btn-danger disabled">Delete</a>
 		</form>
 	</div>
 
+	<div class="row" id="tweet-date-range">
 	<div class="row" id="tweet-list">
 	</div>
 
@@ -50,7 +52,7 @@
 		<blockquote data-id="<%-id%>" id="tweet<%-id%>" class="twitter-tweet">
 			<input type="checkbox" data-id="<%-id%>" />
 			<p><%=displayText%></p><br />
-			<small><a href="https://twitter.com/<%-name%>/status/<%-id%>" target="_blank"><%-created_at%></a></small>
+			<small><a href="https://twitter.com/<%-name%>/status/<%-id%>" target="_blank" class="timestamp"><%-created_at%></a></small><br />
 			<a class="btn btn-default btn-xs pull-right delete" data-id="<%-id%>">delete</a>
 		</blockquote>
 	</div>

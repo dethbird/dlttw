@@ -205,7 +205,10 @@
 			$request->getQuery()->set('count', $_GET['count']);
 			$request->getQuery()->set('trim_user', 1);
 			$request->getQuery()->set('exclude_replies', 1);
-			// $request->getQuery()->set('max_id', "10467902247407616");
+			$request->getQuery()->set('include_rts', 0);
+			if($_GET['max_id']) {
+				$request->getQuery()->set('max_id', $_GET['max_id']);
+			}
 			$request->getQuery()->set('screen_name', $_SESSION['user']->name);
 			$response = $request->send();
 

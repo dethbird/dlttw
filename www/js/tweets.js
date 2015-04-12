@@ -29,7 +29,6 @@ $(document).ready(function() {
             })
             
             $.each(tweet.entities.media || [], function(i,entry) {
-                console.log(entry);
                 index_map[entry.indices[0]] = [entry.indices[1], function(text) {return "<a href='"+ entry.expanded_url + "' target='_blank'><img src='"+that.escapeHTML(entry.media_url_https || entry.media_url)+"' /></a>"}];
             });
             
@@ -90,12 +89,14 @@ $(document).ready(function() {
             until: $('#until')
         },
         events: {
-            'click #search' : 'search',
+            'click #fetch' : 'search',
             'click blockquote.twitter-tweet': 'toggleTweet',
-            'click blockquote.twitter-tweet .delete': 'deleteTweet'
+            'click blockquote.twitter-tweet .delete': 'deleteTweet',
+            'click #all': 'toggleCheckboxes'
         },
         initialize: function(){
             _.bindAll(this, 'render');
+            $('[data-toggle="tooltip"]').tooltip();
         },
         render: function(){
             var template = _.template( $("#tweet-container").html());
@@ -113,7 +114,19 @@ $(document).ready(function() {
             var minId = _.min(tweets.models, function(tweet){
                 return tweet.id;
             });
-            console.log(minId.id);
+
+            var maxId = _.max(tweets.models, function(tweet){
+                return tweet.id;
+            });
+
+            // set the max id in the form, url, and cookie
+            $('#max_id').val(minId.id);
+
+            $.each($('.timestamp'), function(i,e){
+                var e = $(e);
+                var d = new Date(Date.parse(e.html()));
+                e.html(d.toString());
+            });
 
             
         },
@@ -121,13 +134,13 @@ $(document).ready(function() {
             var that = this;
             tweets.fetch({
                 data: {
-                    count: 200
+                    count: 50,
+                    max_id: $('#max_id').val()
                 },
                 beforeSend: function(){
                     $('#tweet-list').html('<img src="img/ajax-loader.gif" />');
                 },
                 success: function(data) {
-                    // console.log(data);
                     $('#tweet-list').html('');
                     that.render();
                 },
@@ -146,6 +159,32 @@ $(document).ready(function() {
                 target.addClass('selected');
                 target.find('input[type=checkbox]').prop('checked', true);
             }
+            this.toggleDeleteButton();
+        },
+        toggleCheckboxes: function(e) {
+            $.each($('blockquote.twitter-tweet'), function(i, target){
+                target = $(target);
+                if(!e.target.checked){
+                    target.removeClass('selected');
+                    target.find('input[type=checkbox]').prop('checked', false);
+                } else {
+                    target.addClass('selected');
+                    target.find('input[type=checkbox]').prop('checked', true);
+                }    
+            });
+            this.toggleDeleteButton();
+        },
+        toggleDeleteButton: function() {
+            var c = 0;
+            $.each($('blockquote.twitter-tweet'), function(i,e){
+                console.log($(e).hasClass('selected'));
+                c = $(e).hasClass('selected') ? c+1 : c;
+            });
+            if(c > 0) {
+                $('#delete').removeClass('disabled');
+            } else {
+                $('#delete').addClass('disabled');
+            }
         },
         deleteTweet: function(e) {
             var target = $(e.target);
@@ -153,7 +192,6 @@ $(document).ready(function() {
             tweet.destroy({
                 success: function(data){
                     //remove from DOM
-                    console.log(data.id);
                     $('#tweet' + data.id).fadeOut(500);
                 },
                 error: function(error){
