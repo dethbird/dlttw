@@ -49,11 +49,11 @@
 
 	<script type="text/template" id="tweet-container">
 	<div class="row">
-		<blockquote data-id="<%-id%>" id="tweet<%-id%>" class="twitter-tweet">
-			<input type="checkbox" data-id="<%-id%>" />
+		<blockquote data-id="<%-id_str%>" id="tweet<%-id_str%>" class="twitter-tweet">
+			<input type="checkbox" data-id="<%-id_str%>" />
 			<p><%=displayText%></p><br />
-			<small><a href="https://twitter.com/<%-name%>/status/<%-id%>" target="_blank" class="timestamp"><%-created_at%></a></small><br />
-			<a class="btn btn-default btn-xs pull-right delete" data-id="<%-id%>">delete</a>
+			<small><a href="https://twitter.com/<%-user.name%>/status/<%-id_str%>" target="_blank" class="timestamp"><%-created_at%></a></small><br />
+			<a class="btn btn-default btn-xs pull-right delete" data-id="<%-id_str%>">delete</a>
 		</blockquote>
 	</div>
 	</script>

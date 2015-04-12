@@ -57,6 +57,7 @@ $(document).ready(function() {
         
 
             tweet = _.extend(tweet, {
+                id: tweet.id_str,
                 displayText: result
             });
             return tweet;
@@ -92,7 +93,8 @@ $(document).ready(function() {
             'click #fetch' : 'search',
             'click blockquote.twitter-tweet': 'toggleTweet',
             'click blockquote.twitter-tweet .delete': 'deleteTweet',
-            'click #all': 'toggleCheckboxes'
+            'click #all': 'toggleCheckboxes',
+            'click #delete': 'deleteSelectedTweets'
         },
         initialize: function(){
             _.bindAll(this, 'render');
@@ -101,6 +103,7 @@ $(document).ready(function() {
         render: function(){
             var template = _.template( $("#tweet-container").html());
             _.each(tweets.models, function(e,i){
+                console.log(e.attributes);
                 $('#tweet-list').append(template(e.attributes));
 
                 // Twitterize
@@ -177,7 +180,6 @@ $(document).ready(function() {
         toggleDeleteButton: function() {
             var c = 0;
             $.each($('blockquote.twitter-tweet'), function(i,e){
-                console.log($(e).hasClass('selected'));
                 c = $(e).hasClass('selected') ? c+1 : c;
             });
             if(c > 0) {
@@ -186,9 +188,8 @@ $(document).ready(function() {
                 $('#delete').addClass('disabled');
             }
         },
-        deleteTweet: function(e) {
-            var target = $(e.target);
-            var tweet = tweets.get(target.data('id'));
+        /** @param tweet TweetModel */
+        delete: function(tweet) {
             tweet.destroy({
                 success: function(data){
                     //remove from DOM
@@ -196,6 +197,21 @@ $(document).ready(function() {
                 },
                 error: function(error){
                     console.log(error);
+                }
+            });
+        },
+        deleteTweet: function(e) {
+            var target = $(e.target);
+            var tweet = tweets.get(target.data('id'));
+            this.delete(tweet);
+        },
+        deleteSelectedTweets: function(e) {
+            var that = this;
+            $.each($('blockquote.twitter-tweet'), function(i,t){
+                t = $(t);
+                if(t.hasClass('selected')){
+                    var tweet = tweets.get(t.data('id'));
+                    that.delete(tweet);
                 }
             });
         }

@@ -203,7 +203,7 @@
 
 			$request = $twitter_client->get('statuses/user_timeline.json');
 			$request->getQuery()->set('count', $_GET['count']);
-			$request->getQuery()->set('trim_user', 1);
+			// $request->getQuery()->set('trim_user', 1);
 			$request->getQuery()->set('exclude_replies', 1);
 			$request->getQuery()->set('include_rts', 0);
 			if($_GET['max_id']) {
@@ -235,9 +235,7 @@
 		    'token_secret' => $_SESSION['twitter_token_secret']
 		)));
 
-	    // var_dump($id);
 	    $request = $twitter_client->post('statuses/destroy.json');
-	    // $request = $twitter_client->get('statuses/show.json');
 	    $request->getQuery()->set('id', $id);
 	    $response = $request->send();
 		$app->response()->header('Content-Type', 'application/json');
