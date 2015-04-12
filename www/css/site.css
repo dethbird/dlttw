@@ -9,7 +9,7 @@
   */ 
 blockquote.twitter-tweet {
   display: inline-block;
-  padding: 16px;
+  padding: 16px 16px 16px 36px;
   margin: 10px 0;
   max-width: 468px;
   border: #ddd 1px solid;
@@ -19,6 +19,10 @@ blockquote.twitter-tweet {
   box-shadow: 0 1px 3px rgba(0,0,0,0.15);
   font: bold 14px/18px Helvetica, Arial, sans-serif;
   color: #000;
+}
+blockquote.twitter-tweet:hover, blockquote.twitter-tweet.selected {
+    background-color: #f5fcff;
+    cursor: pointer;
 }
  
 blockquote.twitter-tweet p {
@@ -30,10 +34,16 @@ blockquote.twitter-tweet p {
 blockquote.twitter-tweet a[href^="https://twitter.com"],
 blockquote.twitter-tweet a[href^="https://t.co"] {
   font-weight: normal;
-  color: #666;
   font-size: 12px;
+}
+blockquote.twitter-tweet small a {
+    color: #666;
 }
 blockquote.twitter-tweet img {
     max-width: 300px;
     height: auto;
+}
+blockquote.twitter-tweet input[type=checkbox] {
+    margin-top: -8px;
+    margin-left: -24px;
 }

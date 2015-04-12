@@ -66,7 +66,7 @@ $(document).ready(function() {
 
     var TweetCollection = Backbone.Collection.extend({
         model: Tweet,
-        url: "/tweets/search"
+        url: "/tweets"
     });
     tweets = new TweetCollection;
 	
@@ -90,43 +90,74 @@ $(document).ready(function() {
             until: $('#until')
         },
         events: {
-            'click #search' : 'search'
+            'click #search' : 'search',
+            'click blockquote.twitter-tweet': 'toggleTweet',
+            'click blockquote.twitter-tweet .delete': 'deleteTweet'
         },
         initialize: function(){
             _.bindAll(this, 'render');
-            this.render();
         },
         render: function(){
             var template = _.template( $("#tweet-container").html());
             _.each(tweets.models, function(e,i){
                 $('#tweet-list').append(template(e.attributes));
-                // console.log(e.attributes);
-                // if(e.attributes.entities.urls[0]!==undefined) {}
-                
+
                 // Twitterize
                 // twttr.widgets.createTweet(
                 //     e.id,
                 //     $('#tweet' + e.id)[0]
                 // );
-            })
+            });
+
+
+            var minId = _.min(tweets.models, function(tweet){
+                return tweet.id;
+            });
+            console.log(minId.id);
+
             
         },
         search: function() {
             var that = this;
             tweets.fetch({
                 data: {
-                    count: 25
+                    count: 200
                 },
                 beforeSend: function(){
                     $('#tweet-list').html('<img src="img/ajax-loader.gif" />');
                 },
                 success: function(data) {
-                    console.log(data);
+                    // console.log(data);
                     $('#tweet-list').html('');
                     that.render();
                 },
                 error: function() {
                     // alert('error');
+                }
+            });
+        },
+        toggleTweet: function(e) {
+            var target = $(e.target);
+            target = $('#tweet' + target.data('id'));
+            if(target.hasClass('selected')){
+                target.removeClass('selected');
+                target.find('input[type=checkbox]').prop('checked', false);
+            } else {
+                target.addClass('selected');
+                target.find('input[type=checkbox]').prop('checked', true);
+            }
+        },
+        deleteTweet: function(e) {
+            var target = $(e.target);
+            var tweet = tweets.get(target.data('id'));
+            tweet.destroy({
+                success: function(data){
+                    //remove from DOM
+                    console.log(data.id);
+                    $('#tweet' + data.id).fadeOut(500);
+                },
+                error: function(error){
+                    console.log(error);
                 }
             });
         }

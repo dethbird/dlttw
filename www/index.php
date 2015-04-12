@@ -188,16 +188,40 @@
 	*  VIEWS 
 	*/
 
-	$app->get('/tweets', $authCheck($app), function () use ($app) {
+	$app->get('/tweets', $authCheck($app), function () use ($app, $configs) {
 
-	    $app->render('partials/tweets.twig', array(
-	    	"section"=>"/tweets",
-	    	"user" => $_SESSION['user']
-    	));
+		if($app->request()->isAjax()) {
+			$twitter_client = new \Guzzle\Http\Client('https://api.twitter.com/{version}', array(
+	    		'version' => '1.1'
+		    ));
+		    $twitter_client->addSubscriber(new Guzzle\Plugin\Oauth\OauthPlugin(array(
+			    'consumer_key' => $configs['twitter.key'],
+			    'consumer_secret' => $configs['twitter.secret'],
+			    'token' => $_SESSION['twitter_access_token'],
+			    'token_secret' => $_SESSION['twitter_token_secret']
+			)));
+
+			$request = $twitter_client->get('statuses/user_timeline.json');
+			$request->getQuery()->set('count', $_GET['count']);
+			$request->getQuery()->set('trim_user', 1);
+			$request->getQuery()->set('exclude_replies', 1);
+			// $request->getQuery()->set('max_id', "10467902247407616");
+			$request->getQuery()->set('screen_name', $_SESSION['user']->name);
+			$response = $request->send();
+
+			$app->response()->header('Content-Type', 'application/json');
+			$app->response()->setBody($response->getBody(true));
+
+		} else {
+
+		    $app->render('partials/tweets.twig', array(
+		    	"section"=>"/tweets",
+		    	"user" => $_SESSION['user']
+	    	));
+		}
 	});
 
-	$app->get('/tweets/search', $authCheck($app), function () use ($app, $configs) {
-
+	$app->delete('/tweets/:id', $authCheck($app), function ($id) use ($app, $configs) {
 		$twitter_client = new \Guzzle\Http\Client('https://api.twitter.com/{version}', array(
     		'version' => '1.1'
 	    ));
@@ -208,16 +232,16 @@
 		    'token_secret' => $_SESSION['twitter_token_secret']
 		)));
 
-		$request = $twitter_client->get('statuses/user_timeline.json');
-		$request->getQuery()->set('count', $_GET['count']);
-		$request->getQuery()->set('trim_user', 1);
-		$request->getQuery()->set('exclude_replies', 1);
-		$request->getQuery()->set('screen_name', $_SESSION['user']->name);
-		$response = $request->send();
+	    // var_dump($id);
+	    $request = $twitter_client->post('statuses/destroy.json');
+	    // $request = $twitter_client->get('statuses/show.json');
+	    $request->getQuery()->set('id', $id);
+	    $response = $request->send();
+		$app->response()->header('Content-Type', 'application/json');
+		$app->response()->setBody($response->getBody(true));
 
-		echo $response->getBody(true);
-	    
 	});
+
 
 	// $app->POST('/write', $authCheck($app, $client), function () use ($app, $client) {
 

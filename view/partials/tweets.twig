@@ -14,7 +14,7 @@
 
     <div class="clearfix"></div>
 
-	<div class="row" >
+	<!--<div class="row" >
 		<form class="form-inline" id="search-form">
 		 	<div class="form-group">
 		    	<label for="exampleInputName2">Query</label>
@@ -26,15 +26,32 @@
 		  	</div>
 		  	<a id="search" class="btn btn-default">Search</a>
 		</form>
+	</div>-->
+
+	<div class="row" >
+		<form class="form-inline" id="filter-form">
+		 	<div class="form-group">
+		    	<label for="q">Filter</label>
+		    	<input type="text" class="form-control" id="q" placeholder="e.g. apples">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="until">Max ID</label>
+		    	<input type="text" class="form-control" id="max_id" placeholder="tweet id">
+		  	</div>
+		  	<a id="filter" class="btn btn-default">Retrieve</a>
+		</form>
 	</div>
+
 	<div class="row" id="tweet-list">
 	</div>
 
 	<script type="text/template" id="tweet-container">
 	<div class="row">
-		<blockquote id="<%-id%>" class="twitter-tweet">
+		<blockquote data-id="<%-id%>" id="tweet<%-id%>" class="twitter-tweet">
+			<input type="checkbox" data-id="<%-id%>" />
 			<p><%=displayText%></p><br />
 			<small><a href="https://twitter.com/<%-name%>/status/<%-id%>" target="_blank"><%-created_at%></a></small>
+			<a class="btn btn-default btn-xs pull-right delete" data-id="<%-id%>">delete</a>
 		</blockquote>
 	</div>
 	</script>
