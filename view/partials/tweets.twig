@@ -27,22 +27,22 @@
 		  	<a id="search" class="btn btn-default">Search</a>
 		</form>
 	</div>
-	<div class="row" id="tweet-list"></div>
+	<div class="row" id="tweet-list">
+	</div>
 
 	<script type="text/template" id="tweet-container">
 	<div class="row">
 		<blockquote id="<%-id%>" class="twitter-tweet">
-			<p><%-text%><br /></p>
-			<% if (typeof(extended_entites) !== "undefined") { %>
-				<img src="<%-extended_entites.media[0].media_url%>" /><br />
-			<% } %>
+			<p><%=displayText%></p><br />
 			<small><a href="https://twitter.com/<%-name%>/status/<%-id%>" target="_blank"><%-created_at%></a></small>
 		</blockquote>
 	</div>
 	</script>
 
-	<!-- <blockquote class="twitter-tweet"><p><%-text%></a></a> <a href=\"http://t.co/HMhbyTg18X\">pic.twitter.com/HMhbyTg18X</a></p>— US Dept of Interior (@Interior) <a href=\"https://twitter.com/Interior/status/507185938620219395\">September 3, 2014</a></blockquote>
- -->
+	<script type="text/template" id="tweet-image">
+	<a href="<%-expanded_url%>" target="_blank"><img src="<%-media_url%>" /></a>
+	</script>
+
 	<div class="row" >
 	</div>
 {% endblock %}
