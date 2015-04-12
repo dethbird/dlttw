@@ -5,6 +5,7 @@
         "slim/views": "0.1.*",
         "twig/twig": "1.*",
         "guzzlehttp/guzzle": "3.8.1",
-        "lusitanian/oauth": "~0.3"
+        "lusitanian/oauth": "~0.3",
+        "themattharris/tmhoauth": "dev-master"
     }
 }

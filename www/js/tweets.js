@@ -1,6 +1,10 @@
 $(document).ready(function() {
 	
 	var user = JSON.parse($("#twitter-user").html());
+    var TweetsCollection = Backbone.Collection.extend({
+      url: "/tweets/search"
+    });
+    tweets = new TweetsCollection;
 	
     var TwitterUserProfileView = Backbone.View.extend({
         el: $("#twitter-user-profile"),
@@ -15,8 +19,12 @@ $(document).ready(function() {
     });
 	var userNavView = new TwitterUserProfileView();
 
-    var SearchFormView = Backbone.View.extend({
-        el: $("#search-form"),
+    var TweetsView = Backbone.View.extend({
+        el: $("body"),
+        els: {
+            query: $('#q'),
+            until: $('#until')
+        },
         events: {
             'click #search' : 'search'
         },
@@ -25,14 +33,41 @@ $(document).ready(function() {
             this.render();
         },
         render: function(){
-            // var template = _.template( $("#search-form-template").html());
-            // this.$el.html( template(user) );
+            var template = _.template( $("#tweet-container").html());
+            _.each(tweets.models, function(e,i){
+                $('#tweet-list').append(template(e.attributes));
+                // if(e.attributes.entities.urls[0]!==undefined) {}
+                
+                // Twitterize
+                // twttr.widgets.createTweet(
+                //     e.id,
+                //     $('#tweet' + e.id)[0]
+                // );
+            })
+            
         },
         search: function() {
-            console.log('search');
+            var that = this;
+            tweets.fetch({
+                data: {
+                    count: 25
+                },
+                beforeSend: function(){
+                    $('#tweet-list').html('<img src="img/ajax-loader.gif" />');
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('#tweet-list').html('');
+                    that.render();
+                },
+                error: function() {
+                    // alert('error');
+                }
+            });
         }
     });
-    var searchForm = new SearchFormView();
+    var tweetsView = new TweetsView();
+    tweetsView.search();
 
 });
 

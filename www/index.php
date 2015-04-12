@@ -51,6 +51,7 @@
     use OAuth\ServiceFactory;
     use OAuth1\Service\Twitter;
 	use GuzzleHttp\Subscriber\Oauth\Oauth1;
+	use tmhOAuth;
 
 	// Basic functional classes
 	$session = new Session();
@@ -187,12 +188,35 @@
 	*  VIEWS 
 	*/
 
-	$app->get('/tweets', $authCheck($app, $client), function () use ($app, $client) {
+	$app->get('/tweets', $authCheck($app), function () use ($app) {
 
 	    $app->render('partials/tweets.twig', array(
 	    	"section"=>"/tweets",
 	    	"user" => $_SESSION['user']
     	));
+	});
+
+	$app->get('/tweets/search', $authCheck($app), function () use ($app, $configs) {
+
+		$twitter_client = new \Guzzle\Http\Client('https://api.twitter.com/{version}', array(
+    		'version' => '1.1'
+	    ));
+	    $twitter_client->addSubscriber(new Guzzle\Plugin\Oauth\OauthPlugin(array(
+		    'consumer_key' => $configs['twitter.key'],
+		    'consumer_secret' => $configs['twitter.secret'],
+		    'token' => $_SESSION['twitter_access_token'],
+		    'token_secret' => $_SESSION['twitter_token_secret']
+		)));
+
+		$request = $twitter_client->get('statuses/user_timeline.json');
+		$request->getQuery()->set('count', $_GET['count']);
+		$request->getQuery()->set('trim_user', 1);
+		$request->getQuery()->set('exclude_replies', 1);
+		$request->getQuery()->set('screen_name', $_SESSION['user']->name);
+		$response = $request->send();
+
+		echo $response->getBody(true);
+	    
 	});
 
 	// $app->POST('/write', $authCheck($app, $client), function () use ($app, $client) {
@@ -237,7 +261,7 @@
     	Logger::log($result);
 
     	$_SESSION['user'] = $result;
-		$_SESSION['twitter_access_token'] = $t->getAccessTokenSecret();
+		$_SESSION['twitter_access_token'] = $t->getAccessToken();
 		$_SESSION['twitter_token_secret'] = $t->getAccessTokenSecret();
 		
 		$app->flash("success", "Twitter user ". $result->name ." connected!");
