@@ -51,6 +51,11 @@ blockquote.twitter-tweet p {
   margin: 0 5px 10px 0;
   white-space: pre-wrap;
 }
+
+blockquote.twitter-tweet.selected:hover p,
+blockquote.twitter-tweet.selected p {
+  text-decoration: line-through;
+}
  
 blockquote.twitter-tweet a[href^="https://twitter.com"],
 blockquote.twitter-tweet a[href^="https://t.co"] {
