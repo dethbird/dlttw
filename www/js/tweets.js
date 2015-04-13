@@ -86,6 +86,7 @@ $(document).ready(function() {
 
     var TweetsView = Backbone.View.extend({
         filterTimeout: 0,
+        selectedCount: 0,
         el: $("body"),
         els: {
             query: $('#q'),
@@ -106,7 +107,6 @@ $(document).ready(function() {
         render: function(){
             $('#tweet-list').html('');
             var template = _.template( $("#tweet-container").html());
-            console.log(tweets.models);
             var filtered =  _.filter(tweets.models, function(e){
                 var filterText = $('#filter').val().trim();
                 if(filterText!=""){
@@ -114,7 +114,6 @@ $(document).ready(function() {
                 }
                 return true;
             });
-            console.log(filtered);
             _.each(
                 filtered, function(e,i){
                 $('#tweet-list').append(template(e.attributes));
@@ -127,11 +126,11 @@ $(document).ready(function() {
             });
 
 
-            var minId = _.min(tweets.models, function(tweet){
+            var minId = _.min(filtered, function(tweet){
                 return tweet.id;
             });
 
-            var maxId = _.max(tweets.models, function(tweet){
+            var maxId = _.max(filtered, function(tweet){
                 return tweet.id;
             });
 
@@ -199,12 +198,13 @@ $(document).ready(function() {
             this.toggleDeleteButton();
         },
         toggleDeleteButton: function() {
-            var c = 0;
+            var that = this;
+            that.selectedCount = 0;
             $.each($('blockquote.twitter-tweet'), function(i,e){
-                c = $(e).hasClass('selected') ? c+1 : c;
+                that.selectedCount = $(e).hasClass('selected') ? that.selectedCount+1 : that.selectedCount
             });
-            if(c > 0) {
-                $('#delete-count').html(c);
+            if(that.selectedCount > 0) {
+                $('#delete-count').html(that.selectedCount);
                 $('#delete').removeClass('disabled');
             } else {
                 $('#delete-count').html('');
@@ -223,10 +223,16 @@ $(document).ready(function() {
         },
         /** @param tweet TweetModel */
         delete: function(tweet) {
+            var that = this;
             tweet.destroy({
                 success: function(data){
                     //remove from DOM
                     $('#tweet' + data.id).fadeOut(500);
+                    that.selectedCount--;
+                    $('#delete-count').html(that.selectedCount > 0 ? that.selectedCount : '');
+                    if(that.selectedCount==0) {
+                        $('#delete').addClass('disabled');
+                    }
                 },
                 error: function(error){
                     console.log(error);

@@ -4,6 +4,9 @@
 #twitter-user-profile img {
   padding: 0 5px 0 0;
 }
+#delete-count {
+  margin-left: 5px;
+}
 .load-hide {
     display:none;
     visibility: hidden;
