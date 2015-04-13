@@ -121,6 +121,14 @@ $(document).ready(function() {
                 return tweet.id;
             });
 
+            console.log(minId.get('created_at'));
+
+            var minDate = new Date(Date.parse(minId.get('created_at')));
+            var maxDate = new Date(Date.parse(maxId.get('created_at')));
+            $('#date-range').html(
+                maxDate.toDateString() + ' - ' + minDate.toDateString()
+            );
+
             // set the max id in the form, url, and cookie
             $('#max_id').val(minId.id);
 
@@ -136,7 +144,7 @@ $(document).ready(function() {
             var that = this;
             tweets.fetch({
                 data: {
-                    count: 10,
+                    count: $('#count').val(),
                     max_id: $('#max_id').val()
                 },
                 beforeSend: function(){
@@ -182,8 +190,10 @@ $(document).ready(function() {
                 c = $(e).hasClass('selected') ? c+1 : c;
             });
             if(c > 0) {
+                $('#delete-count').html(c);
                 $('#delete').removeClass('disabled');
             } else {
+                $('#delete-count').html('');
                 $('#delete').addClass('disabled');
             }
         },
