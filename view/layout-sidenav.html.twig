@@ -50,10 +50,19 @@
                   <span id="twitter-user-profile">dddd<!-- twitter user profile--></span>
                 </li>
                 <li>
-                    <form id="filter-form">
+                      <form id="filter-form">
                       <div>
-                          <label for="until">All:</label>
+                          <br />
+                          <a id="delete" class="btn btn-danger btn-lg disabled">Delete<small id="delete-count"></small></a>
+                          <br />
+                      </div>
+                      <div>
+                          <label for="until">CheckAll:</label>
                           <input type="checkbox" id="all" />
+                      </div>
+                      <div>
+                          <label for="until">Filter:</label>
+                          <input type="text" class="form-control input-sm" id="filter" placeholder="pizza" data-toggle="tooltip" data-placement="bottom" title="Filter the current list">
                       </div>
                       <div>
                           <label for="until">Max Id:</label>
@@ -62,20 +71,16 @@
                       <div>
                           <label for="until">Per Page:</label>
                           <select class="form-control input-sm" id="count">
-                              <option value="10">10</option>
+                              <option value="10" selected="selected">10</option>
                               <option value="25">25</option>
                               <option value="50">50</option>
                               <option value="100">100</option>
-                              <option value="200" selected="selected">200</option>
+                              <option value="200">200</option>
                           </select>
                       </div>
                       <div>
                           <small id="date-range"></small><br />
                           <a id="fetch" class="btn btn-default btn-sm">Next Page</a>
-                      </div>
-                      <div>
-                          <br />
-                          <a id="delete" class="btn btn-danger btn-sm disabled">Delete <small id="delete-count"></small></a>
                       </div>
                     </form>
                 </li>
@@ -102,9 +107,6 @@
                           <strong>Success!</strong> {{flash.success}}
                         </div>
                       {% endif %}
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-
-
                         {% block body %}{% endblock %}
                     </div>
                 </div>

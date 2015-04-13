@@ -85,6 +85,7 @@ $(document).ready(function() {
 
 
     var TweetsView = Backbone.View.extend({
+        filterTimeout: 0,
         el: $("body"),
         els: {
             query: $('#q'),
@@ -95,15 +96,27 @@ $(document).ready(function() {
             'click blockquote.twitter-tweet': 'toggleTweet',
             'click blockquote.twitter-tweet .delete': 'deleteTweet',
             'click #all': 'toggleCheckboxes',
-            'click #delete': 'deleteSelectedTweets'
+            'click #delete': 'deleteSelectedTweets',
+            'keyup #filter': 'triggerFilterTimeout'
         },
         initialize: function(){
             _.bindAll(this, 'render');
             $('[data-toggle="tooltip"]').tooltip();
         },
         render: function(){
+            $('#tweet-list').html('');
             var template = _.template( $("#tweet-container").html());
-            _.each(tweets.models, function(e,i){
+            console.log(tweets.models);
+            var filtered =  _.filter(tweets.models, function(e){
+                var filterText = $('#filter').val().trim();
+                if(filterText!=""){
+                    return e.get('displayText').search(new RegExp(filterText, "i")) > -1;
+                }
+                return true;
+            });
+            console.log(filtered);
+            _.each(
+                filtered, function(e,i){
                 $('#tweet-list').append(template(e.attributes));
 
                 // Twitterize
@@ -141,6 +154,7 @@ $(document).ready(function() {
         },
         search: function() {
             var that = this;
+            tweets.reset();
             tweets.fetch({
                 data: {
                     count: $('#count').val(),
@@ -152,6 +166,7 @@ $(document).ready(function() {
                 success: function(data) {
                     $('#tweet-list').html('');
                     that.render();
+                    that.toggleDeleteButton();
                 },
                 error: function() {
                     // alert('error');
@@ -195,6 +210,16 @@ $(document).ready(function() {
                 $('#delete-count').html('');
                 $('#delete').addClass('disabled');
             }
+        },
+        triggerFilterTimeout: function() {
+            var that = this;
+            if( this.filterTimeout != null) {
+                clearTimeout(this.filterTimeout);
+            }
+            this.filterTimeout = setTimeout(function(){
+                that.render();
+            }, 180);
+            
         },
         /** @param tweet TweetModel */
         delete: function(tweet) {
