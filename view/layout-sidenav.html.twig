@@ -1,0 +1,139 @@
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title ng-bind="title">{% block title %}dlt.tw{% endblock %}</title>
+  
+  {% block opengraph_meta %}
+    <meta property="og:site_name" content="RishiSatsangi.com - artwerks by Rishi Satsangi">
+    <meta property="og:type" content="website">
+  {% endblock %} 
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- jquery -->
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+
+  <script src="//assets.artistcontrolbox.com/js/autolink-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+
+
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  <!-- sitewide js -->
+  <script src="js/site.js"></script>
+
+	
+  <link rel="stylesheet" href="/css/site.css">
+
+  <!-- google font -->
+<!--   <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'> -->
+<!--<link href="http://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" type="text/css">  -->
+
+  {% block headscript %}{% endblock %}
+</head>
+<body>
+
+<div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                  <span id="twitter-user-profile">dddd<!-- twitter user profile--></span>
+                </li>
+                <li>
+                    <form id="filter-form">
+                      <div>
+                          <label for="until">All:</label>
+                          <input type="checkbox" id="all" />
+                      </div>
+                      <div>
+                          <label for="until">Max Id:</label>
+                          <input type="text" class="form-control input-sm" id="max_id" placeholder="tweet id" data-toggle="tooltip" data-placement="bottom" title="Return 200 tweets with this tweet id as the newest">
+                      </div>
+                      <div>
+                          <label for="until">Per Page:</label>
+                          <select class="form-control input-sm" id="count">
+                              <option value="10">10</option>
+                              <option value="25">25</option>
+                              <option value="50">50</option>
+                              <option value="100">100</option>
+                              <option value="200" selected="selected">200</option>
+                          </select>
+                      </div>
+                      <div>
+                          <small id="date-range"></small><br />
+                          <a id="fetch" class="btn btn-default btn-sm">Next Page</a>
+                      </div>
+                      <div>
+                          <br />
+                          <a id="delete" class="btn btn-danger btn-sm disabled">Delete <small id="delete-count"></small></a>
+                      </div>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                      
+                      {% if flash.error != "" %}
+                        <div class="alert alert-danger alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                          <strong>Error!</strong> {{flash.error}}
+                        </div>
+                        {% endif %}
+
+                        {% if flash.success != "" %}
+                        <div class="alert alert-success alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                          <strong>Success!</strong> {{flash.success}}
+                        </div>
+                      {% endif %}
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+
+
+                        {% block body %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+<script type="text/template" id="twitter-user-profile-template">
+  <img src="<%-profile_image_url%>" width="48" height="auto"  class="pull-left img-rounded"/> @<%-name%><a href="/logout">logout</a>
+</script>
+<script type="text/json" id="twitter-user">{{ user|json_encode|raw }}</script>
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+</body>
+</html>

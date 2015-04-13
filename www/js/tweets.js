@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+    
 	var user = JSON.parse($("#twitter-user").html());
 
     var Tweet = Backbone.Model.extend({
@@ -83,6 +83,7 @@ $(document).ready(function() {
     });
 	var userNavView = new TwitterUserProfileView();
 
+
     var TweetsView = Backbone.View.extend({
         el: $("body"),
         els: {
@@ -120,8 +121,6 @@ $(document).ready(function() {
             var maxId = _.max(tweets.models, function(tweet){
                 return tweet.id;
             });
-
-            console.log(minId.get('created_at'));
 
             var minDate = new Date(Date.parse(minId.get('created_at')));
             var maxDate = new Date(Date.parse(maxId.get('created_at')));

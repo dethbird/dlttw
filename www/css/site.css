@@ -1,6 +1,9 @@
 #main_content {
   margin-top: 100px;
 }
+#twitter-user-profile img {
+  padding: 0 5px 0 0;
+}
 .load-hide {
     display:none;
     visibility: hidden;
@@ -11,7 +14,7 @@ li form {
   color: #fff;
 }
 li form label {
-  display: block;
+  display: inline;
 }
 
 li .form-group {
@@ -68,4 +71,112 @@ blockquote.twitter-tweet input[type=checkbox] {
 }
 blockquote.twitter-tweet .label-default {
   background-color: #bbb;
+}
+
+
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+
+/**
+ * @link http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/
+ * Sidebar Styles 
+ */
+
+.sidebar-nav {
+    color: #fff;
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 15px;
+    list-style: none;
+}
+
+.sidebar-nav li form {
+    line-height: 40px;
+}
+.sidebar-nav li a {
+    display: block;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 260px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding-left: 50px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
 }
