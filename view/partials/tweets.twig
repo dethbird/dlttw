@@ -15,21 +15,7 @@
     <div class="clearfix"></div>
 
 	<!--<div class="row" >
-		<form class="form-inline" id="search-form">
-		 	<div class="form-group">
-		    	<label for="exampleInputName2">Query</label>
-		    	<input type="text" class="form-control" id="q" placeholder="butts">
-		  	</div>
-		  	<div class="form-group">
-		    	<label for="exampleInputEmail2">Until</label>
-		    	<input type="date" class="form-control" id="until" placeholder="2015-04-15">
-		  	</div>
-		  	<a id="search" class="btn btn-default">Search</a>
-		</form>
-	</div>-->
-
-	<div class="row" >
-		<form class="form-inline" id="filter-form">
+		 <form class="form-inline" id="filter-form">
 			<div class="form-group">
 		    	<label for="until">All:</label>
 		    	<input type="checkbox" class="form-control" id="all" />
@@ -40,8 +26,8 @@
 		  	</div>
 		  	<a id="fetch" class="btn btn-default">Retrieve</a>
 		  	<a id="delete" class="btn btn-danger disabled">Delete</a>
-		</form>
-	</div>
+		</form> 
+	</div>-->
 
 	<div class="row" id="tweet-date-range">
 	<div class="row" id="tweet-list">
@@ -51,8 +37,10 @@
 	<div class="row">
 		<blockquote data-id="<%-id_str%>" id="tweet<%-id_str%>" class="twitter-tweet">
 			<input type="checkbox" data-id="<%-id_str%>" />
-			<p><%=displayText%></p><br />
+			<p><%=displayText%></p>
+			<br />
 			<small><a href="https://twitter.com/<%-user.name%>/status/<%-id_str%>" target="_blank" class="timestamp"><%-created_at%></a></small><br />
+			<span class="label label-default pull-left"><%-id_str%></span>
 			<a class="btn btn-default btn-xs pull-right delete" data-id="<%-id_str%>">delete</a>
 		</blockquote>
 	</div>

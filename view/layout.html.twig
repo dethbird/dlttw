@@ -41,7 +41,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse" role="navigation" ng-controller="NavController">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavController">
   <!-- Brand and toggle get grouped for better mobile data-dismissplay -->
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gallery-navbar-collapse">
@@ -67,7 +67,24 @@
           </ul>
 
         </li>
-
+        <li>
+            <form id="filter-form">
+                <div class="form-group pull-left">
+                    <label for="until">All:</label>
+                    <input type="checkbox" class="form-control" id="all" />
+                </div>
+                <div class="form-group pull-left">
+                    <label for="until">Max Id:</label>
+                    <input type="text" class="form-control input-sm" id="max_id" placeholder="tweet id" data-toggle="tooltip" data-placement="bottom" title="Return 200 tweets with this tweet id as the newest">
+                </div>
+                <div class="form-group pull-left">
+                    <a id="fetch" class="btn btn-default btn-xs">Next Page</a>
+                </div>
+                <div class="form-group pull-left">
+                    <a id="delete" class="btn btn-danger btn-xs disabled">Delete</a>
+                </div>
+            </form>
+        </li>
     </ul>
   </div><!-- /.navbar-collapse -->
   {%endif%}
@@ -78,7 +95,7 @@
 </script>
 
 
-<div class="container">
+<div class="container" id="main_content">
   
   {% if flash.error != "" %}
   <div class="alert alert-danger alert-dismissable">

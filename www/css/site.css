@@ -1,15 +1,35 @@
+#main_content {
+  margin-top: 100px;
+}
 .load-hide {
     display:none;
     visibility: hidden;
 }
 
+li form {
+  margin-top: 5px;
+  color: #fff;
+}
+li form label {
+  display: block;
+}
+li form a {
+  margin-top: 30px;
+}
+li .form-group {
+  margin-right: 10px;
+}
+li .form-control {
+  width: auto;
+  display: inline-block;
+}
 
 /**
  * @link https://dev.twitter.com/web/overview/css
   */ 
 blockquote.twitter-tweet {
   display: inline-block;
-  padding: 16px 16px 16px 36px;
+  padding: 0px 16px 16px 36px;
   margin: 10px 0;
   max-width: 468px;
   border: #ddd 1px solid;
@@ -40,10 +60,14 @@ blockquote.twitter-tweet small a {
     color: #666;
 }
 blockquote.twitter-tweet img {
+    vertical-align: text-top;
     max-width: 300px;
     height: auto;
 }
 blockquote.twitter-tweet input[type=checkbox] {
-    margin-top: -8px;
+    margin-top: 10px;
     margin-left: -24px;
+}
+blockquote.twitter-tweet .label-default {
+  background-color: #bbb;
 }

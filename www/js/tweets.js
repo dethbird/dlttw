@@ -103,7 +103,6 @@ $(document).ready(function() {
         render: function(){
             var template = _.template( $("#tweet-container").html());
             _.each(tweets.models, function(e,i){
-                console.log(e.attributes);
                 $('#tweet-list').append(template(e.attributes));
 
                 // Twitterize
@@ -137,7 +136,7 @@ $(document).ready(function() {
             var that = this;
             tweets.fetch({
                 data: {
-                    count: 50,
+                    count: 10,
                     max_id: $('#max_id').val()
                 },
                 beforeSend: function(){
