@@ -206,7 +206,11 @@
 			// $request->getQuery()->set('trim_user', 1);
 			$request->getQuery()->set('exclude_replies', 1);
 			$request->getQuery()->set('include_rts', 0);
-			if($_GET['max_id']) {
+			
+			if(isset($_GET['since_id'])) {
+				$request->getQuery()->set('since_id', $_GET['since_id']);
+			}
+			if($_GET['max_id']!="") {
 				$request->getQuery()->set('max_id', $_GET['max_id']);
 			}
 			$request->getQuery()->set('screen_name', $_SESSION['user']->name);
@@ -235,6 +239,7 @@
 		    'token_secret' => $_SESSION['twitter_token_secret']
 		)));
 
+	    // $request = $twitter_client->get('statuses/show.json');
 	    $request = $twitter_client->post('statuses/destroy.json');
 	    $request->getQuery()->set('id', $id);
 	    $response = $request->send();
@@ -283,7 +288,7 @@
 		// Send a request with it
     	$result = json_decode($twitterClient->request('account/verify_credentials.json'));
 
-    	Logger::log($result);
+    	// Logger::log($result);
 
     	$_SESSION['user'] = $result;
 		$_SESSION['twitter_access_token'] = $t->getAccessToken();

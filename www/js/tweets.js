@@ -87,12 +87,15 @@ $(document).ready(function() {
     var TweetsView = Backbone.View.extend({
         filterTimeout: 0,
         selectedCount: 0,
+        minId: null,
+        maxId: null,
         el: $("body"),
         els: {
             query: $('#q'),
             until: $('#until')
         },
         events: {
+            'click #fetch-prev' : 'prev',
             'click #fetch' : 'search',
             'click blockquote.twitter-tweet': 'toggleTweet',
             'click blockquote.twitter-tweet .delete': 'deleteTweet',
@@ -126,22 +129,22 @@ $(document).ready(function() {
             });
 
 
-            var minId = _.min(filtered, function(tweet){
+            this.minId = _.min(tweets.models, function(tweet){
                 return tweet.id;
             });
 
-            var maxId = _.max(filtered, function(tweet){
+            this.maxId = _.max(tweets.models, function(tweet){
                 return tweet.id;
             });
 
-            var minDate = new Date(Date.parse(minId.get('created_at')));
-            var maxDate = new Date(Date.parse(maxId.get('created_at')));
+            var minDate = new Date(Date.parse(this.minId.get('created_at')));
+            var maxDate = new Date(Date.parse(this.maxId.get('created_at')));
             $('#date-range').html(
                 maxDate.toDateString() + ' - ' + minDate.toDateString()
             );
 
             // set the max id in the form, url, and cookie
-            $('#max_id').val(minId.id);
+            $('#max_id').val(this.minId.id);
 
             $.each($('.timestamp'), function(i,e){
                 var e = $(e);
@@ -150,6 +153,28 @@ $(document).ready(function() {
             });
 
             
+        },
+        prev: function() {
+            var that = this;
+            tweets.reset();
+            tweets.fetch({
+                data: {
+                    count: $('#count').val(),
+                    since_id: that.maxId.id,
+                    max_id: null
+                },
+                beforeSend: function(){
+                    $('#tweet-list').html('<img src="img/ajax-loader.gif" />');
+                },
+                success: function(data) {
+                    $('#tweet-list').html('');
+                    that.render();
+                    that.toggleDeleteButton();
+                },
+                error: function() {
+                    // alert('error');
+                }
+            });
         },
         search: function() {
             var that = this;
@@ -227,7 +252,9 @@ $(document).ready(function() {
             tweet.destroy({
                 success: function(data){
                     //remove from DOM
-                    $('#tweet' + data.id).fadeOut(500);
+                    $('#tweet' + data.id).fadeOut(500, function(){
+                        $('#tweet' + data.id).remove();
+                    });
                     that.selectedCount--;
                     $('#delete-count').html(that.selectedCount > 0 ? that.selectedCount : '');
                     if(that.selectedCount==0) {
