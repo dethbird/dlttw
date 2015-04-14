@@ -4,8 +4,6 @@
 	<title ng-bind="title">{% block title %}dlt.tw{% endblock %}</title>
   
   {% block opengraph_meta %}
-    <meta property="og:site_name" content="RishiSatsangi.com - artwerks by Rishi Satsangi">
-    <meta property="og:type" content="website">
   {% endblock %} 
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,6 +36,7 @@
 <!--<link href="http://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" type="text/css">  -->
 
   {% block headscript %}{% endblock %}
+  {% include 'partials/meta.twig' %}
 </head>
 <body>
 
@@ -78,9 +77,6 @@
   </div>
 </div>
 
-<div class="container">
-<!-- <center>&copy; 2014 RishiSatsangi.com</center> -->
-</div>
 <script type="text/json" id="twitter-user">{{ user|json_encode|raw }}</script>
 <script>window.twttr = (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0],
