@@ -71,7 +71,7 @@ $(document).ready(function(){
 
     		setTimeout(function(){
     			that.showNext();
-    		}, 15000);
+    		}, 10000);
     	}
     });
     var sbAdView = new SidebarAdsView('#nav_ad', amznProducts);

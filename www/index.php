@@ -77,6 +77,7 @@
 	        return array(
 	            new \Twig_SimpleFilter('print_r', array($this, 'print_r')),
 	            new \Twig_SimpleFilter('date_format', array($this, 'date_format')),
+	            new \Twig_SimpleFilter('time', array($this, 'time')),
 	            new \Twig_SimpleFilter('json_encode', array($this, 'json_encode')),
 	            new \Twig_SimpleFilter('strip_tags', array($this, 'strip_tags')),
 	            new \Twig_SimpleFilter('substr', array($this, 'substr'))
@@ -86,6 +87,11 @@
 	    public function print_r($output)
 	    {
 	        return print_r($output,1);
+	    }
+
+	    public function time()
+	    {
+	    	return time();
 	    }
 
 	    public function date_format($date, $format = "F j, Y g:i:a")
@@ -109,7 +115,6 @@
 	    {
 	        return json_encode($object);
 	    }
-  
 
 	    public function getName()
 	    {

@@ -51,6 +51,7 @@
                 </li>
                 <li>
                       <form id="filter-form">
+                      <div id="nav_ad"></div>
                       <div>
                           <br />
                           <a id="delete" class="btn btn-danger btn-lg disabled">Delete<small id="delete-count"></small></a>
@@ -82,9 +83,16 @@
                           <small id="date-range"></small><br />
                           <a id="fetch" class="btn btn-default btn-sm">Next Page</a>
                       </div>
-                      <div id="nav_ad"></div>
                     </form>
                 </li>
+                <li class="site-nav">
+                  / <a href="/tweets">tweets</a><br />
+                  / <a href="/about">about</a><br />
+                  / <a href="/contact">contact</a><br />
+                  / <a href="/privacy">privacy</a><br />
+                  / <a href="/tos">terms of service</a><br />
+                </li>
+                <li><br />&copy {{ time|date("Y") }} dlt.tw</li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
