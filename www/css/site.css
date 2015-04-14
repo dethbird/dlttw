@@ -1,6 +1,9 @@
 #main_content {
   margin-top: 100px;
 }
+#delete-count {
+  margin-left: 5px;
+}
 #twitter-user-profile img {
   padding: 0 5px 0 0;
 }

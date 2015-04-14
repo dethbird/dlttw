@@ -110,6 +110,7 @@ $(document).ready(function() {
         render: function(){
             $('#tweet-list').html('');
             var template = _.template( $("#tweet-container").html());
+            this.updateTweetCount(tweets.models);
             var filtered =  _.filter(tweets.models, function(e){
                 var filterText = $('#filter').val().trim();
                 if(filterText!=""){
@@ -246,6 +247,10 @@ $(document).ready(function() {
             }, 180);
             
         },
+        updateTweetCount: function(list) {
+            var plural = list.length==1 ? '' : 's';
+            $('#tweet-count').html(list.length + " tweet" + plural);
+        },
         /** @param tweet TweetModel */
         delete: function(tweet) {
             var that = this;
@@ -260,6 +265,7 @@ $(document).ready(function() {
                     if(that.selectedCount==0) {
                         $('#delete').addClass('disabled');
                     }
+                    that.updateTweetCount(tweets.models);
                 },
                 error: function(error){
                     console.log(error);
