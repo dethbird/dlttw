@@ -80,7 +80,7 @@ blockquote.twitter-tweet .label-default {
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #000;
+    background:#f2f2f2;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -109,7 +109,7 @@ blockquote.twitter-tweet .label-default {
  */
 
 .sidebar-nav {
-    color: #fff;
+    color: #666;
     position: absolute;
     top: 0;
     width: 250px;
@@ -181,13 +181,17 @@ blockquote.twitter-tweet .label-default {
 .sidebar-nav li.site-nav a {
     display: inline;
 }
+.sidebar-nav .logo {
+  float:left;
+  margin: 0 5px 5px 0;
+  padding-top: 5px;
+}
 .row {
   margin: 0;
 }
 
 li form {
   margin-top: 5px;
-  color: #fff;
 }
 li form label {
   display: inline;
