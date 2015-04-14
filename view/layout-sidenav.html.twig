@@ -38,6 +38,25 @@
 <!--<link href="http://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" type="text/css">  -->
 
   {% block headscript %}{% endblock %}
+
+
+  <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="img/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
 </head>
 <body>
 
@@ -47,16 +66,16 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li>
-                  <span id="twitter-user-profile"><!-- twitter user profile--></span>
+                  <div id="twitter-user-profile"><!-- twitter user profile--></div>
+                  <br />
                 </li>
                 <li>
                       <form id="filter-form">
-                      <div id="nav_ad"></div>
                       <div>
                           <br />
                           <a id="delete" class="btn btn-danger btn-lg disabled">Delete<small id="delete-count"></small></a>
-                          <br />
                       </div>
+                      <div id="nav_ad"></div><br />
                       <div>
                           <label for="until">Check All:</label>
                           <input type="checkbox" id="all" />
@@ -86,11 +105,12 @@
                     </form>
                 </li>
                 <li class="site-nav">
-                  / <a href="/tweets">tweets</a><br />
-                  / <a href="/about">about</a><br />
-                  / <a href="/contact">contact</a><br />
-                  / <a href="/privacy">privacy</a><br />
-                  / <a href="/tos">terms of service</a><br />
+                  <br />
+                  <a href="/tweets">my tweets</a>
+                  | <a href="/about">about</a>
+                  | <a href="/contact">contact</a>
+                  | <a href="/privacy">privacy</a>
+                  | <a href="/tos">terms of service</a><br />
                 </li>
                 <li><br />&copy {{ time|date("Y") }} dlt.tw</li>
             </ul>
@@ -127,7 +147,7 @@
     <!-- /#wrapper -->
 
 <script type="text/template" id="twitter-user-profile-template">
-  <img src="<%-profile_image_url%>" width="48" height="auto"  class="pull-left img-rounded"/> @<%-name%><a href="/logout">logout</a>
+  <img src="<%-profile_image_url%>" width="64" height="auto"  class="pull-left img-rounded"/> @<%-screen_name%><a href="/logout">logout</a>
 </script>
 <script type="text/template" id="amzn-product-template">
   <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=dlttw-20&marketplace=amazon&region=US&placement=<%-id%>&asins=<%-id%>&linkId=KYCDIRQP4OP6L2AT&show_border=true&link_opens_in_new_window=true">
