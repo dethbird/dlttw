@@ -1,5 +1,27 @@
 /** Sitewide functions */
 
+
+var amznProducts = [
+	"B00QKVYKZ4",
+	"1623260353",
+	"1118269748",
+	"0199970785",
+	"1118215524",
+	"0300199007",
+	"1250002958",
+	"007182393X",
+	"0071836322",
+	"1118951352",
+	"1449314201",
+	"B00FQVNYR4",
+	"B005X1Y7I2",
+	"B005OW4BFE",
+	"1482014092",
+	"1118954831",
+	"0071841156",
+	"1591848075"
+];
+
 $(document).ready(function(){
 
 
@@ -34,5 +56,24 @@ $(document).ready(function(){
         $("#wrapper").toggleClass("toggled");
     });
 
+    var SidebarAdsView = Backbone.View.extend({
+    	amznProducts: [],
+    	initialize: function(containerId, amznProducts) {
+    		this.el = $(containerId);
+    		this.amznProducts = amznProducts;
+    		this.showNext();
+    	},
+    	showNext: function() {
+    		var that = this;
+    		var index = Math.floor(Math.random() * (amznProducts.length));
+    		var template = _.template( $("#amzn-product-template").html());
+    		this.el.html(template({id: amznProducts[index]}));
+
+    		setTimeout(function(){
+    			that.showNext();
+    		}, 15000);
+    	}
+    });
+    var sbAdView = new SidebarAdsView('#nav_ad', amznProducts);
     
 });

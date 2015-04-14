@@ -4,12 +4,16 @@
 #twitter-user-profile img {
   padding: 0 5px 0 0;
 }
-#delete-count {
-  margin-left: 5px;
+#nav_ad {
+  margin: 25px 0 0 0 ;
+  text-align: center;
 }
 .load-hide {
     display:none;
     visibility: hidden;
+}
+.row {
+  margin: 0;
 }
 
 li form {
@@ -179,7 +183,6 @@ blockquote.twitter-tweet .label-default {
     }
 
     #page-content-wrapper {
-        padding-left: 50px;
         position: relative;
     }
 
