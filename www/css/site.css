@@ -204,3 +204,8 @@ li .form-control {
   width: auto;
   display: inline-block;
 }
+.banner-container {
+  margin: 10px 0 10px 0;
+  height: 60px;
+  width: 468px;
+}

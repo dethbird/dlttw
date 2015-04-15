@@ -13,7 +13,8 @@
 	<script src="js/tweets.js"></script>
 
     <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-
+    <br />
+    <div class='banner-container'></div>
     <!--<br />
     <br />
     <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=dlttw-20&o=1&p=26&l=ur1&category=music&banner=1W6BXWP2MD99TNTE8F02&f=ifr&linkID=PR4BR5EIRYEEPR2T" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
@@ -30,7 +31,7 @@
     <br />
     <br />-->
 
-    <div id="tweet-count"></div>
+    <h3 id="tweet-count"></h3>
 	<div class="row" id="tweet-list">
 	</div>
 
@@ -50,6 +51,8 @@
 	<script type="text/template" id="tweet-image">
 	<a href="<%-expanded_url%>" target="_blank"><img src="<%-media_url%>" /></a>
 	</script>
+
+	
 
 {% endblock %}
 

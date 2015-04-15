@@ -153,6 +153,11 @@ $(document).ready(function() {
                 e.html(d.toString());
             });
 
+            // banners
+            var banners = $('.banner');
+            var bannerIndex = Math.floor(Math.random() * banners.length);
+            $('.banner-container').html($(banners[bannerIndex]).html());
+
             
         },
         prev: function() {
@@ -290,6 +295,7 @@ $(document).ready(function() {
     });
     var tweetsView = new TweetsView();
     tweetsView.search();
+
 
 });
 
