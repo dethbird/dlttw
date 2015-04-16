@@ -81,19 +81,13 @@
                           </select>
                       </div>
                       <div>
-                          <small id="date-range"></small><br />
                           <a id="fetch" class="btn btn-default btn-sm">Next Page</a>
                       </div>
                     </form>
                 </li>
                 <li class="site-nav">
                   <br />
-                  <a href="http://twitter.com/dlttw" target="_blank" class="logo"><img src="img/favicon/favicon-32x32.png" /></a>
-                  <a href="/tweets">my tweets</a>
-                  | <a href="/about">about</a>
-                  | <a href="/contact">contact</a>
-                  | <a href="/privacy">privacy</a>
-                  | <a href="/tos">terms of service</a><br />
+                  {% include 'partials/footer-nav.twig' %}<br />
                 </li>
                 <li><br />&copy {{ time|date("Y") }} dlt.tw</li>
             </ul>

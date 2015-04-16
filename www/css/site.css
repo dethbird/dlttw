@@ -10,7 +10,7 @@ blockquote.twitter-tweet {
   border-top-color: #eee;
   border-bottom-color: #bbb;
   border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  box-shadow: 1px 2px 10px rgba(0,0,0,0.12);
   font: bold 14px/18px Helvetica, Arial, sans-serif;
   color: #000;
 }
@@ -208,4 +208,11 @@ li .form-control {
   margin: 10px 0 10px 0;
   height: 60px;
   width: 468px;
+}
+
+/* 55acee */
+.btn-primary {
+  color: #ffffff;
+  background-color: #55acee;
+  border-color: #3ea1ec;
 }

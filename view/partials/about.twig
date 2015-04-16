@@ -1,0 +1,19 @@
+{% extends 'layout-auth.html.twig' %}
+
+{% block title %}{{parent()}} / auth{% endblock %}
+
+ {% block opengraph_meta %}
+        {{parent()}}
+  {% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="clearfix"></div>
+    <div class="row" >
+        <h2>about</h2>
+        <br />
+        <p>
+            <strong>dlt.tw</strong> <em>(delete tweet)</em> is a tool for removing old tweets in bulk from your twitter archive. Perhaps you want to rebrand your @account, or maybe you are handing the account screen name to someone else and you want to remove everything first. This tool makes it easy to remove tweets from your history in bulk and with ease.
+        </p>
+    </div>
+{% endblock %}

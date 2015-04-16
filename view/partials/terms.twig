@@ -1,0 +1,32 @@
+{% extends 'layout-auth.html.twig' %}
+
+{% block title %}{{parent()}} / auth{% endblock %}
+
+ {% block opengraph_meta %}
+        {{parent()}}
+  {% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="clearfix"></div>
+    <div class="row" >
+        <h2>terms of service</h2>
+        <br />
+            <h4>Summary</h4>
+            <ul>
+                <li>We do not share any information with third parties.</li>
+                <li>We do not collect or store any information other than that required to provide you with the service.</li>
+                <li>There is no warranty.</li>
+                <li>We accept no liability.</li>
+            </ul>
+            <br />
+            <h4>Information Collection</h4>
+            <p>We do not collect any information. We solely provide a tool for you to delete tweets on your own behalf.</p>
+            <br />
+            <h4>Information Usage</h4>
+            <p>We do not use your information for anything, and will not provide any data to third parties.</p>
+            <br />
+            <h4>Warranty and Liability</h4>
+            <p><strong>dlt.tw</strong> is provided as a free service - as such it carries no warranty nor any liability of any kind. <strong>dlt.tw</strong> and its staff and owners are not liable for any loss or problem you or any third party might suffer due to using the service. This includes, but is not limited to, consequential losses in the event that the service stops operating, is unavailable or slow, returns incomplete or inaccurate results, deletes information you wanted, fails to delete information you expected it to, suffers data loss/corruption or any other issue which might be considered detrimental to you.</p>
+    </div>
+{% endblock %}
