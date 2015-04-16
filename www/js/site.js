@@ -28,7 +28,7 @@ $(document).ready(function(){
 	$('.swap').each( function(i,object){
 		var object = $(object);
 		var objectSwap = $('#' + object.attr('id') + '-swap');
-    	
+
     	object.data('src-swap', objectSwap.attr('src'));
     	object.data('src', object.attr('src'));
 
@@ -54,6 +54,18 @@ $(document).ready(function(){
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
+        var span = $(this).find('span');
+        if ($("#wrapper").hasClass('toggled')) {
+            $(span).removeClass('glyphicon-chevrnon-left');
+            $(span).addClass('glyphicon-menu-hamburger');
+        } else {
+            $(span).addClass('glyphicon-chevron-left');
+            $(span).removeClass('glyphicon-menu-hamburger');
+        }
+        // $.each($('#menu-toggle span'), function (i,e){
+        //     e = $(e);
+        //     if(e.hasClass(.glyphicon-));
+        // });
     });
 
     var SidebarAdsView = Backbone.View.extend({
@@ -75,5 +87,5 @@ $(document).ready(function(){
     	}
     });
     var sbAdView = new SidebarAdsView('#nav_ad', amznProducts);
-    
+
 });
