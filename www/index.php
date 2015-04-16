@@ -241,11 +241,11 @@
             $request->getQuery()->set('exclude_replies', 1);
             $request->getQuery()->set('include_rts', 0);
 
-            if(isset($_GET['since_id'])) {
-                $request->getQuery()->set('since_id', $_GET['since_id']);
+            if(!is_null($request->getQuery()->get('since_id'))) {
+                $request->getQuery()->set('since_id', $request->getQuery()->get('since_id'));
             }
-            if($_GET['max_id']!="") {
-                $request->getQuery()->set('max_id', $_GET['max_id']);
+            if(!is_null($request->getQuery()->get('max_id'))) {
+                $request->getQuery()->set('max_id', $request->getQuery()->get('max_id'));
             }
             $request->getQuery()->set('screen_name', $_SESSION['user']->screen_name);
             $response = $request->send();
@@ -254,10 +254,10 @@
             $app->response()->setBody($response->getBody(true));
 
         } else {
-
             $app->render('partials/tweets.twig', array(
                 "section"=>"/tweets",
-                "user" => $_SESSION['user']
+                "user" => $_SESSION['user'],
+                "params" => $app->request->params()
             ));
         }
     });

@@ -2,9 +2,9 @@
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title ng-bind="title">{% if user %}@{{ user.screen_name }}{% endif %} / {% block title %}dlt.tw{% endblock %}</title>
-  
+
   {% block opengraph_meta %}
-  {% endblock %} 
+  {% endblock %}
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -27,7 +27,7 @@
   <!-- sitewide js -->
   <script src="js/site.js"></script>
 
-	
+
   <link rel="stylesheet" href="/css/site.css">
 
   <!-- google font -->
@@ -68,7 +68,7 @@
                       </div>
                       <div>
                           <label for="until">Max Id:</label>
-                          <input type="text" class="form-control input-sm" id="max_id" placeholder="tweet id" data-toggle="tooltip" data-placement="bottom" title="Return 200 tweets with this tweet id as the newest">
+                          <input type="text" class="form-control input-sm" id="max_id" placeholder="tweet id" data-toggle="tooltip" data-placement="bottom" title="Return 200 tweets with this tweet id as the newest" value="{{params.max_id}}">
                       </div>
                       <div>
                           <label for="until">Per Page:</label>
@@ -87,7 +87,7 @@
                 </li>
                 <li class="site-nav">
                   <br />
-                  {% include 'partials/footer-nav.twig' %}<br />
+                  {% include 'partials/footer-nav.twig' with params %}<br />
                 </li>
                 <li><br />&copy {{ time|date("Y") }} dlt.tw</li>
             </ul>
@@ -99,7 +99,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                      
+
                       {% if flash.error != "" %}
                         <div class="alert alert-danger alert-dismissable">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -141,12 +141,12 @@
   js.id = id;
   js.src = "https://platform.twitter.com/widgets.js";
   fjs.parentNode.insertBefore(js, fjs);
- 
+
   t._e = [];
   t.ready = function(f) {
     t._e.push(f);
   };
- 
+
   return t;
 }(document, "script", "twitter-wjs"));</script>
 
@@ -163,35 +163,35 @@
     <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=dlttw-20&o=1&p=26&l=ur1&category=mostwishforitem&banner=1M2GXANPMRX5Z7KV4202&f=ifr&linkID=H7HWCOLQ3BZ4ZTU2" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
   </script>
 
-   <script type="text/template" class='banner'> 
+   <script type="text/template" class='banner'>
     <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=dlttw-20&o=1&p=26&l=ur1&category=gold&banner=185C2AJPHN0G698PK902&f=ifr&linkID=QAFCYF2URQRQT5WJ" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
   </script>
-  
+
   <script type="text/template" class='banner'>
     <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=dlttw-20&o=1&p=26&l=ur1&category=software&banner=19XTBE67NXHSQT0ASGR2&f=ifr&linkID=VUBAZJSZKZ4IPSYM" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
   </script>
-  
-  <script type="text/template" class='banner'> 
+
+  <script type="text/template" class='banner'>
     <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=dlttw-20&o=1&p=26&l=ur1&category=software&banner=1FK66HEKB1FF17W9AP02&f=ifr&linkID=CLIBBNJ3AKP5PINC" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
   </script>
-  
-  <script type="text/template" class='banner'>  
-    <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=dlttw-20&o=1&p=26&l=ur1&category=software&banner=0TYKHJJDX2X0PE44KXR2&f=ifr&linkID=THMM5VC44UAIJ7MP" width="468" 
+
+  <script type="text/template" class='banner'>
+    <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=dlttw-20&o=1&p=26&l=ur1&category=software&banner=0TYKHJJDX2X0PE44KXR2&f=ifr&linkID=THMM5VC44UAIJ7MP" width="468"
     height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
   </script>
-  
+
   <script type="text/template" class='banner'>
     <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=dlttw-20&o=1&p=26&l=ur1&category=software&banner=1XRKWRGXVBMET9YQTV82&f=ifr&linkID=MH2URUVUKTNZW2QZ" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
   </script>
-  
-  <script type="text/template" class='banner'>  
+
+  <script type="text/template" class='banner'>
     <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=dlttw-20&o=1&p=26&l=ur1&category=software&banner=0SK2G677SXK3HXYGFZR2&f=ifr&linkID=2NH6GRTZ5W4M667A" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
   </script>
-    
+
   <script type="text/template" class='banner'>
     <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=dlttw-20&o=1&p=26&l=ur1&category=videogames&banner=1620DM2X8DSD2PK5Q6R2&f=ifr&linkID=VRQW2THLO3LNVUSN" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
   </script>
-  
+
   <script type="text/template" class='banner'>
     <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=dlttw-20&o=1&p=26&l=ur1&category=topgiftideas&banner=13TF8DHM5H3K11P61YR2&f=ifr&linkID=OZHJIABP5UXAQNFA" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
   </script>

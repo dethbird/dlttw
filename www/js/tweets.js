@@ -129,6 +129,7 @@ $(document).ready(function() {
                 // );
             });
 
+            // console.log(window.location);
 
             this.minId = _.min(tweets.models, function(tweet){
                 return parseInt(tweet.id);
