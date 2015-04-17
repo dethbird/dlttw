@@ -69,6 +69,8 @@ $(document).ready(function() {
         url: "/tweets"
     });
     tweets = new TweetCollection;
+    maxTweetHistory = [];
+
 
     var TwitterUserProfileView = Backbone.View.extend({
         el: $("#twitter-user-profile"),
@@ -89,6 +91,7 @@ $(document).ready(function() {
         selectedCount: 0,
         minId: null,
         maxId: null,
+        maxTweetHistory: maxTweetHistory,
         el: $("body"),
         els: {
             query: $('#q'),
@@ -96,7 +99,7 @@ $(document).ready(function() {
         },
         events: {
             'click #fetch-prev' : 'prev',
-            'click #fetch' : 'search',
+            'click #fetch' : 'next',
             'click blockquote.twitter-tweet': 'toggleTweet',
             'click blockquote.twitter-tweet .delete': 'deleteTweet',
             'click #all': 'toggleCheckboxes',
@@ -147,6 +150,7 @@ $(document).ready(function() {
 
             // set the max id in the form, url, and cookie
             $('#max_id').val(this.minId.get('id'));
+
             var url = Qurl.create();
             url.query('max_id', this.maxId.get('id'));
 
@@ -164,27 +168,16 @@ $(document).ready(function() {
 
         },
         prev: function() {
-            var that = this;
-            tweets.reset();
-            tweets.fetch({
-                data: {
-                    count: $('#count').val(),
-                    since_id: that.maxId.get('id')
-                },
-                beforeSend: function(){
-                    $('#tweet-list').html('<img src="img/ajax-loader.gif" />');
-                },
-                success: function(data) {
-                    $('#tweet-list').html('');
-                    that.render();
-                    that.toggleDeleteButton();
-                },
-                error: function() {
-                    // alert('error');
-                }
-            });
+            var maxId = this.maxTweetHistory.pop();
+            maxId = this.maxTweetHistory.pop();
+            if(max_id) {
+                $('#max_id').val(maxId);
+                this.next();
+            } else {
+                $('#fetch-prev').addClass('disabled');
+            }
         },
-        search: function() {
+        next: function(e) {
             var that = this;
             tweets.reset();
             tweets.fetch({
@@ -196,8 +189,15 @@ $(document).ready(function() {
                     $('#tweet-list').html('<img src="img/ajax-loader.gif" />');
                 },
                 success: function(data) {
-                    $('#tweet-list').html('');
+
+
                     that.render();
+
+                    if(that.maxTweetHistory.length > 0) {
+                        $('#fetch-prev').removeClass('disabled');
+                    }
+                    that.maxTweetHistory.push(that.maxId.get('id'));
+
                     that.toggleDeleteButton();
                 },
                 error: function() {
@@ -296,7 +296,7 @@ $(document).ready(function() {
         }
     });
     var tweetsView = new TweetsView();
-    tweetsView.search();
+    tweetsView.next();
 
 
 });

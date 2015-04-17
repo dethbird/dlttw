@@ -240,9 +240,6 @@
             $request->getQuery()->set('exclude_replies', 1);
             $request->getQuery()->set('include_rts', 0);
 
-            if($app->request->get('since_id')!="") {
-                $request->getQuery()->set('since_id',$app->request->get('since_id'));
-            }
             if($app->request->get('max_id')!="") {
                 $request->getQuery()->set('max_id', $app->request->get('max_id'));
             }
