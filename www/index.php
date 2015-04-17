@@ -237,15 +237,14 @@
 
             $request = $twitter_client->get('statuses/user_timeline.json');
             $request->getQuery()->set('count', $_GET['count']);
-            // $request->getQuery()->set('trim_user', 1);
             $request->getQuery()->set('exclude_replies', 1);
             $request->getQuery()->set('include_rts', 0);
 
-            if(!is_null($request->getQuery()->get('since_id'))) {
-                $request->getQuery()->set('since_id', $request->getQuery()->get('since_id'));
+            if($app->request->get('since_id')!="") {
+                $request->getQuery()->set('since_id',$app->request->get('since_id'));
             }
-            if(!is_null($request->getQuery()->get('max_id'))) {
-                $request->getQuery()->set('max_id', $request->getQuery()->get('max_id'));
+            if($app->request->get('max_id')!="") {
+                $request->getQuery()->set('max_id', $app->request->get('max_id'));
             }
             $request->getQuery()->set('screen_name', $_SESSION['user']->screen_name);
             $response = $request->send();
