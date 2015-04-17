@@ -147,6 +147,8 @@ $(document).ready(function() {
 
             // set the max id in the form, url, and cookie
             $('#max_id').val(this.minId.get('id'));
+            var url = Qurl.create();
+            url.query('max_id', this.maxId.get('id'));
 
             $.each($('.timestamp'), function(i,e){
                 var e = $(e);
@@ -167,8 +169,7 @@ $(document).ready(function() {
             tweets.fetch({
                 data: {
                     count: $('#count').val(),
-                    since_id: that.maxId.id,
-                    max_id: null
+                    since_id: that.maxId.get('id')
                 },
                 beforeSend: function(){
                     $('#tweet-list').html('<img src="img/ajax-loader.gif" />');

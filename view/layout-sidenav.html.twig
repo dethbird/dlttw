@@ -15,6 +15,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
 
   <script src="//assets.artistcontrolbox.com/js/autolink-min.js"></script>
+  <script src="//assets.artistcontrolbox.com/js/qurl.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 
 
@@ -53,6 +54,7 @@
                 </li>
                 <li>
                       <form id="filter-form">
+                        <input type="hidden" id="max_id" value="{{params.max_id}}">
                       <div>
                           <br />
                           <a id="delete" class="btn btn-danger btn-lg disabled">Delete<small id="delete-count"></small></a>
@@ -65,10 +67,6 @@
                       <div>
                           <label for="until">Filter:</label>
                           <input type="text" class="form-control input-sm" id="filter" placeholder="pizza" data-toggle="tooltip" data-placement="bottom" title="Filter the current list">
-                      </div>
-                      <div>
-                          <label for="until">Max Id:</label>
-                          <input type="text" class="form-control input-sm" id="max_id" placeholder="tweet id" data-toggle="tooltip" data-placement="bottom" title="Return 200 tweets with this tweet id as the newest" value="{{params.max_id}}">
                       </div>
                       <div>
                           <label for="until">Per Page:</label>

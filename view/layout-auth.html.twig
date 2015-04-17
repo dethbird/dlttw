@@ -2,9 +2,9 @@
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title ng-bind="title">{% block title %}dlt.tw{% endblock %}</title>
-  
+
   {% block opengraph_meta %}
-  {% endblock %} 
+  {% endblock %}
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,6 +15,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
 
   <script src="//assets.artistcontrolbox.com/js/autolink-min.js"></script>
+  <script src="//assets.artistcontrolbox.com/js/qurl.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 
 
@@ -27,7 +28,7 @@
   <!-- sitewide js -->
   <script src="js/site.js"></script>
 
-	
+
   <link rel="stylesheet" href="/css/site.css">
 
   <!-- google font -->
@@ -42,7 +43,7 @@
 
 
 <div class="container" id="main_content">
-  
+
   {% if flash.error != "" %}
   <div class="alert alert-danger alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -56,7 +57,7 @@
     <strong>Success!</strong> {{flash.success}}
   </div>
   {% endif %}
-	
+
   {% block body %}{% endblock %}
   <br />
   <br />
@@ -90,12 +91,12 @@
   js.id = id;
   js.src = "https://platform.twitter.com/widgets.js";
   fjs.parentNode.insertBefore(js, fjs);
- 
+
   t._e = [];
   t.ready = function(f) {
     t._e.push(f);
   };
- 
+
   return t;
 }(document, "script", "twitter-wjs"));</script>
 </body>
