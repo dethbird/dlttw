@@ -22,7 +22,7 @@ var amznProducts = [
 	"1591848075"
 ];
 
-$(document).ready(function(){
+$(window).ready(function(){
 
 
 	$('.swap').each( function(i,object){
