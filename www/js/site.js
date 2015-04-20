@@ -24,6 +24,7 @@ var amznProducts = [
 
 $(window).ready(function(){
 
+    var user = JSON.parse($("#twitter-user").html());
 
 	$('.swap').each( function(i,object){
 		var object = $(object);
@@ -68,24 +69,34 @@ $(window).ready(function(){
         // });
     });
 
-    var SidebarAdsView = Backbone.View.extend({
-    	amznProducts: [],
-    	initialize: function(containerId, amznProducts) {
-    		this.el = $(containerId);
-    		this.amznProducts = amznProducts;
-    		this.showNext();
-    	},
-    	showNext: function() {
-    		var that = this;
-    		var index = Math.floor(Math.random() * (amznProducts.length));
-    		var template = _.template( $("#amzn-product-template").html());
-    		this.el.html(template({id: amznProducts[index]}));
+    if(!_.isNull(user)) {
+        var SidebarAdsView = Backbone.View.extend({
+            amznProducts: [],
+            initialize: function(containerId, amznProducts) {
+                this.el = $(containerId);
+                this.amznProducts = amznProducts;
+                this.showNext();
+            },
+            showNext: function() {
+                var that = this;
+                var index = Math.floor(Math.random() * (amznProducts.length));
+                var template = _.template( $("#amzn-product-template").html());
+                this.el.html(template({id: amznProducts[index]}));
 
-    		setTimeout(function(){
-    			that.showNext();
-    		}, 10000);
-    	}
-    });
-    var sbAdView = new SidebarAdsView('#nav_ad', amznProducts);
+                setTimeout(function(){
+                    that.showNext();
+                }, 10000);
+            }
+        });
+        if ($('#nav_ad').length) {
+            var sbAdView = new SidebarAdsView('#nav_ad', amznProducts);
+        }
+
+        ga('create', 'UA-61919997-1', {userId: user.screen_name});
+        ga('set', 'dimension1', user.screen_name);
+    } else {
+        ga('create', 'UA-61919997-1', 'auto');
+    }
+    ga('send', 'pageview');
 
 });
