@@ -1,6 +1,6 @@
 /**
  * @link https://dev.twitter.com/web/overview/css
-  */ 
+  */
 blockquote.twitter-tweet {
   display: inline-block;
   padding: 0px 16px 16px 36px;
@@ -18,7 +18,7 @@ blockquote.twitter-tweet:hover, blockquote.twitter-tweet.selected {
     background-color: #ffd7da;
     cursor: pointer;
 }
- 
+
 blockquote.twitter-tweet p {
   font: normal 18px/24px Georgia, "Times New Roman", Palatino, serif;
   margin: 0 5px 10px 0;
@@ -29,7 +29,7 @@ blockquote.twitter-tweet.selected:hover p,
 blockquote.twitter-tweet.selected p {
   text-decoration: line-through;
 }
- 
+
 blockquote.twitter-tweet a[href^="https://twitter.com"],
 blockquote.twitter-tweet a[href^="https://t.co"] {
   font-weight: normal;
@@ -105,7 +105,7 @@ blockquote.twitter-tweet .label-default {
 
 /**
  * @link http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/
- * Sidebar Styles 
+ * Sidebar Styles
  */
 
 .sidebar-nav {
@@ -168,7 +168,7 @@ blockquote.twitter-tweet .label-default {
   margin-left: 5px;
 }
 #twitter-user-profile img {
-  padding: 0 5px 0 0;
+  padding: 0;
 }
 #nav_ad {
   margin: 25px 0 0 0 ;
@@ -184,7 +184,7 @@ blockquote.twitter-tweet .label-default {
 .sidebar-nav .logo {
   float:left;
   margin: 0 5px 5px 0;
-  padding-top: 5px;
+  margin-top: 5px;
 }
 .row {
   margin: 0;
@@ -216,3 +216,11 @@ li .form-control {
   background-color: #55acee;
   border-color: #3ea1ec;
 }
+
+.mini-logo {
+  margin: 0px 5px 5px 0px;
+  -webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.53);
+  -moz-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.53);
+  box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.53);
+}
+
