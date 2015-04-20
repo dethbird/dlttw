@@ -237,8 +237,8 @@
 
             $request = $twitter_client->get('statuses/user_timeline.json');
             $request->getQuery()->set('count', $_GET['count']);
-            $request->getQuery()->set('exclude_replies', 1);
-            $request->getQuery()->set('include_rts', 0);
+            $request->getQuery()->set('exclude_replies', 0);
+            $request->getQuery()->set('include_rts', 1);
 
             if($app->request->get('max_id')!="") {
                 $request->getQuery()->set('max_id', $app->request->get('max_id'));
@@ -250,10 +250,15 @@
             $app->response()->setBody($response->getBody(true));
 
         } else {
+            $params = $app->request->params();
+            if (!isset($params['count'])) {
+                $params['count'] = 50;
+            }
+
             $app->render('partials/tweets.twig', array(
                 "section"=>"/tweets",
                 "user" => $_SESSION['user'],
-                "params" => $app->request->params()
+                "params" => $params
             ));
         }
     });

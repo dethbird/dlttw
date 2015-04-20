@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(window).ready(function() {
 
 	var user = JSON.parse($("#twitter-user").html());
 
@@ -104,7 +104,8 @@ $(document).ready(function() {
             'click blockquote.twitter-tweet .delete': 'deleteTweet',
             'click #all': 'toggleCheckboxes',
             'click #delete': 'deleteSelectedTweets',
-            'keyup #filter': 'triggerFilterTimeout'
+            'keyup #filter': 'triggerFilterTimeout',
+            'change #count' : 'changeCount'
         },
         initialize: function(){
             _.bindAll(this, 'render');
@@ -165,13 +166,24 @@ $(document).ready(function() {
             var bannerIndex = Math.floor(Math.random() * banners.length);
             $('.banner-container').html($(banners[bannerIndex]).html());
 
+            $('.banner-container iframe').on('mouseover', function(){
+                ga('send', 'event', "app", "banner-ad", "mouseover");
+            });
 
+
+        },
+        changeCount: function(e) {
+            var count = $('#count').val();
+            var url = Qurl.create();
+            url.query('count', count);
+            ga('send', 'event', "app", "change-count", count);
         },
         prev: function() {
             var maxId = this.maxTweetHistory.pop();
             maxId = this.maxTweetHistory.pop();
             if(max_id) {
                 $('#max_id').val(maxId);
+                ga('send', 'event', "app", "prev", $('#count').val());
                 this.next();
             } else {
                 $('#fetch-prev').addClass('disabled');
@@ -186,6 +198,9 @@ $(document).ready(function() {
                     max_id: $('#max_id').val()
                 },
                 beforeSend: function(){
+                    if(e!==undefined) {
+                        ga('send', 'event', "app", "next", $('#count').val());
+                    }
                     $('#tweet-list').html('<img src="img/ajax-loader.gif" />');
                 },
                 success: function(data) {
@@ -208,6 +223,7 @@ $(document).ready(function() {
         toggleTweet: function(e) {
             var target = $(e.target);
             target = $('#tweet' + target.data('id'));
+            ga('send', 'event', "app", "toggle-tweet", target.hasClass('selected') ? 'deselected' : 'selected');
             if(target.hasClass('selected')){
                 target.removeClass('selected');
                 target.find('input[type=checkbox]').prop('checked', false);
@@ -220,6 +236,7 @@ $(document).ready(function() {
         toggleCheckboxes: function(e) {
             $.each($('blockquote.twitter-tweet'), function(i, target){
                 target = $(target);
+                ga('send', 'event', "app", "toggle-all", e.target.checked ? 'selected' : 'deselected');
                 if(!e.target.checked){
                     target.removeClass('selected');
                     target.find('input[type=checkbox]').prop('checked', false);
@@ -250,6 +267,7 @@ $(document).ready(function() {
                 clearTimeout(this.filterTimeout);
             }
             this.filterTimeout = setTimeout(function(){
+                ga('send', 'event', "app", "filter", $('#filter').val().trim());
                 that.render();
             }, 180);
 
@@ -280,19 +298,24 @@ $(document).ready(function() {
             });
         },
         deleteTweet: function(e) {
+            ga('send', 'event', "app", "delete-tweet");
             var target = $(e.target);
             var tweet = tweets.get(target.data('id'));
             this.delete(tweet);
+            e.stopPropagation();
         },
         deleteSelectedTweets: function(e) {
             var that = this;
+            var count = 0;
             $.each($('blockquote.twitter-tweet'), function(i,t){
                 t = $(t);
                 if(t.hasClass('selected')){
                     var tweet = tweets.get(t.data('id'));
                     that.delete(tweet);
+                    count++;
                 }
             });
+            ga('send', 'event', "app", "delete-selected", count);
         }
     });
     var tweetsView = new TweetsView();

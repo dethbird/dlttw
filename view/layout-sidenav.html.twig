@@ -71,11 +71,11 @@
                       <div>
                           <label for="until">Per Page:</label>
                           <select class="form-control input-sm" id="count">
-                              <option value="10">10</option>
-                              <option value="25">25</option>
-                              <option value="50">50</option>
-                              <option value="100">100</option>
-                              <option value="200" selected="selected">200</option>
+                              <option value="10" {%if params.count=="10"%}selected="selected"{% endif %}>10</option>
+                              <option value="25" {%if params.count=="25"%}selected="selected"{% endif %}>25</option>
+                              <option value="50" {%if params.count=="50"%}selected="selected"{% endif %}>50</option>
+                              <option value="100" {%if params.count=="100"%}selected="selected"{% endif %}>100</option>
+                              <option value="200" {%if params.count=="200"%}selected="selected"{% endif %}>200</option>
                           </select>
                       </div>
                       <div>

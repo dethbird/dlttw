@@ -90,6 +90,9 @@ $(window).ready(function(){
         });
         if ($('#nav_ad').length) {
             var sbAdView = new SidebarAdsView('#nav_ad', amznProducts);
+            $('#nav_ad iframe').on('mouseover', function(){
+                ga('send', 'event', "app", "nav-ad", "mouseover");
+            });
         }
 
         ga('create', 'UA-61919997-1', {userId: user.screen_name});
