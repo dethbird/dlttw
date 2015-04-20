@@ -183,7 +183,7 @@ $(window).ready(function() {
             maxId = this.maxTweetHistory.pop();
             if(max_id) {
                 $('#max_id').val(maxId);
-                ga('send', 'event', "app", "prev", $('#count').val());
+                ga('send', 'event', "app", "prev", this.maxTweetHistory.length);
                 this.next();
             } else {
                 $('#fetch-prev').addClass('disabled');
@@ -199,7 +199,7 @@ $(window).ready(function() {
                 },
                 beforeSend: function(){
                     if(e!==undefined) {
-                        ga('send', 'event', "app", "next", $('#count').val());
+                        ga('send', 'event', "app", "next", that.maxTweetHistory.length);
                     }
                     $('#tweet-list').html('<img src="img/ajax-loader.gif" />');
                 },
@@ -298,7 +298,7 @@ $(window).ready(function() {
             });
         },
         deleteTweet: function(e) {
-            ga('send', 'event', "app", "delete-tweet");
+            ga('send', 'event', "app", "delete-tweet", JSON.stringify({screen_name: user.screen_name}));
             var target = $(e.target);
             var tweet = tweets.get(target.data('id'));
             this.delete(tweet);
@@ -315,7 +315,7 @@ $(window).ready(function() {
                     count++;
                 }
             });
-            ga('send', 'event', "app", "delete-selected", count);
+            ga('send', 'event', "app", "delete-selected", JSON.stringify({screen_name: user.screen_name, count: count}));
         }
     });
     var tweetsView = new TweetsView();

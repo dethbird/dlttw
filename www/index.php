@@ -284,15 +284,6 @@
     });
 
 
-    // $app->POST('/write', $authCheck($app, $client), function () use ($app, $client) {
-
-    //  $request = $client->post("/write", array(), $app->request->params());
-    //  $response = $request->send();
-    //  echo $response->getBody(true);
-
-    // });
-
-
     /**
     *  Twitter Auth
     */
@@ -322,8 +313,6 @@
 
         // Send a request with it
         $result = json_decode($twitterClient->request('account/verify_credentials.json'));
-
-        // Logger::log($result);
 
         $_SESSION['user'] = $result;
         $_SESSION['twitter_access_token'] = $t->getAccessToken();
