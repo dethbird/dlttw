@@ -9,7 +9,6 @@
 {% block body %}
 	{{ parent() }}
 
-
 	<script src="js/tweets.js"></script>
 
     <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" title="Toggle Menu"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
@@ -17,7 +16,7 @@
     <div class='banner-container'></div>
 
     <h3 id="tweet-count"></h3>
-  <small id="date-range"></small><br />
+    <small id="date-range"></small><br />
 	<div class="row" id="tweet-list">
 	</div>
 
@@ -25,7 +24,7 @@
 	<div class="row">
 		<blockquote data-id="<%-id_str%>" id="tweet<%-id_str%>" class="twitter-tweet">
 			<input type="checkbox" data-id="<%-id_str%>" />
-			<p><%=displayText%></p>
+			<p><img src="<% if (retweeted) { %><%-retweeted_status.user.profile_image_url%><% } else { %><%-user.profile_image_url%><% } %>" class="pull-left img-rounded" /><%=displayText%></p>
 			<br />
 			<small><a href="https://twitter.com/<%-user.name%>/status/<%-id_str%>" target="_blank" class="timestamp"><%-created_at%></a></small><br />
 			<span class="label label-default pull-left"><%-id_str%></span>

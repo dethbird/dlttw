@@ -24,6 +24,9 @@ blockquote.twitter-tweet p {
   margin: 0 5px 10px 0;
   white-space: pre-wrap;
 }
+blockquote.twitter-tweet p img {
+  margin: 0px 10px 10px 0px;
+}
 
 blockquote.twitter-tweet.selected:hover p,
 blockquote.twitter-tweet.selected p {
@@ -34,6 +37,9 @@ blockquote.twitter-tweet a[href^="https://twitter.com"],
 blockquote.twitter-tweet a[href^="https://t.co"] {
   font-weight: normal;
   font-size: 12px;
+}
+blockquote.twitter-tweet small{
+    clear: both;
 }
 blockquote.twitter-tweet small a {
     color: #666;
