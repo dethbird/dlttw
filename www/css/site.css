@@ -4,13 +4,13 @@
 blockquote.twitter-tweet {
   display: inline-block;
   padding: 0px 16px 16px 36px;
-  margin: 10px 0;
-  max-width: 468px;
+  margin: 10px 0 15px 0px;
+  width: 500px;
   border: #ddd 1px solid;
-  border-top-color: #eee;
+  border-top-color: #5bc0de;
   border-bottom-color: #bbb;
   border-radius: 5px;
-  box-shadow: 1px 2px 10px rgba(0,0,0,0.12);
+  box-shadow: 1px 2px 10px rgba(0,0,0,0.18);
   font: bold 14px/18px Helvetica, Arial, sans-serif;
   color: #000;
 }
