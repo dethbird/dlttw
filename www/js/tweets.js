@@ -102,6 +102,7 @@ $(window).ready(function() {
             'click #fetch' : 'next',
             'click blockquote.twitter-tweet': 'toggleTweet',
             'click blockquote.twitter-tweet .delete': 'deleteTweet',
+            'click blockquote.twitter-tweet .preview': 'previewTweet',
             'click #all': 'toggleCheckboxes',
             'click #delete': 'deleteSelectedTweets',
             'keyup #filter': 'triggerFilterTimeout',
@@ -219,6 +220,23 @@ $(window).ready(function() {
                     // alert('error');
                 }
             });
+        },
+        previewTweet: function (e) {
+            var target = $(e.target);
+            if (target.parent('blockquote').find('.preview-pane').html()=='') {
+                ga('send', 'event', "app", "preview-tweet", JSON.stringify({screen_name: user.screen_name, open: 1}), 1);
+                var tweet = tweets.get(target.data('id'));
+                target.parent('blockquote').find('.preview-pane').html('<br /><br /><div id="tweet-preview-' + target.data('id') + '"></div><textarea>' + JSON.stringify(tweet,null, '\t') + '</textarea>');
+                twttr.widgets.createTweet(
+                    target.data('id'),
+                    $('#tweet-preview-' + target.data('id'))[0]
+                );
+            } else {
+                ga('send', 'event', "app", "preview-tweet", JSON.stringify({screen_name: user.screen_name, open: 0}), 0);
+                target.parent('blockquote').find('.preview-pane').html('');
+            }
+
+            e.stopPropagation();
         },
         toggleTweet: function(e) {
             var target = $(e.target);

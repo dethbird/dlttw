@@ -51,7 +51,23 @@ blockquote.twitter-tweet .label-default {
   background-color: #bbb;
 }
 
+blockquote.twitter-tweet .preview-pane textarea{
+  font-weight:normal;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: .7em;
+  height: 200px;
+  width: 100%;
+  background-color: #000;
+  color: #4ed603;
+  margin: 10px 0px 5px 0px;
+}
 
+blockquote.twitter-tweet .preview {
+  margin-left: 5px;
+}
+blockquote.twitter-tweet .label {
+  margin-right: 5px;
+}
 /*!
  * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.

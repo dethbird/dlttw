@@ -29,7 +29,10 @@
 			<br />
 			<small><a href="https://twitter.com/<%-user.name%>/status/<%-id_str%>" target="_blank" class="timestamp"><%-created_at%></a></small><br />
 			<span class="label label-default pull-left"><%-id_str%></span>
-			<a class="btn btn-default btn-xs pull-right delete" data-id="<%-id_str%>">delete</a>
+            <% if (favorite_count > 0) { %> <span class="label label-info pull-left">favs: <%-favorite_count%></span> <% } %>
+            <% if (retweet_count > 0) { %> <span class="label label-info pull-left">rts: <%-retweet_count%></span> <% } %>
+            <a class="btn btn-default btn-xs pull-right preview" data-id="<%-id_str%>">preview</a> <a class="btn btn-default btn-xs pull-right delete" data-id="<%-id_str%>">delete</a>
+            <div class="preview-pane"></div>
 		</blockquote>
 	</div>
 	</script>

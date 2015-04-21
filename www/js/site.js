@@ -102,4 +102,10 @@ $(window).ready(function(){
     }
     ga('send', 'pageview');
 
+    $(document).keyup(function(e){
+        if (e.keyCode == 27) {
+            $('.preview-pane').html('');
+        }
+    });
+
 });
