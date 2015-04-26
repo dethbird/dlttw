@@ -36,7 +36,7 @@ blockquote.twitter-tweet.selected p {
 blockquote.twitter-tweet a[href^="https://twitter.com"],
 blockquote.twitter-tweet a[href^="https://t.co"] {
   font-weight: normal;
-  font-size: 12px;
+  font-size: .8em;
 }
 blockquote.twitter-tweet small{
     clear: both;
